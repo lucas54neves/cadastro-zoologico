@@ -16,7 +16,7 @@ public class Animal {
         this.especie = especie;
         this.sexo = sexo;
         this.data_nascimento = data_nascimento;
-        this.idade = this.calculaIdade();
+        this.idade = calculaIdade();
     }
 
     public int getCodigo() {
@@ -35,7 +35,7 @@ public class Animal {
         return sexo;
     }
 
-    public Date getDataNasc() {
+    public Date getData_nascimento() {
         return data_nascimento;
     }
     
@@ -50,7 +50,7 @@ public class Animal {
     private int calculaIdade() {
         // Cria um objeto Calendar com a data de nascimento
         Calendar dataNasc = new GregorianCalendar();
-        dataNasc.setTime(this.getDataNasc());
+        dataNasc.setTime(getData_nascimento());
         
         // Cria um objeto Calendar com a data atual
         Calendar dataAtual = Calendar.getInstance();
@@ -66,5 +66,15 @@ public class Animal {
         
         // Retorna a idade
         return idade;
+    }
+    
+    @Override
+    public String toString() {
+        return "Código do animal: " + getCodigo() + "\n" +
+            "Nome do animal: " + getNome() + "\n" +
+            "Espécie do animal: " + getEspecie() + "\n" +
+            "Sexo do animal: " + getSexo() + "\n" +
+            "Data de nascimento do animal: " + getData_nascimento() + "\n" +
+            "Idade do animal: " + getIdade();
     }
 }
