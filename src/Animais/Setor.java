@@ -1,14 +1,14 @@
-package Jaulas;
+package Animais;
 
 import Animais.*;
 import Funcionarios.*;
 
-public class Jaula {
+public class Setor {
     private final Animal mAnimais;
     private Funcionario mResponsavel;
     private final String mSetor;
 
-    public Jaula(Animal mAnimais, Funcionario mResponsavel, String mSetor) {
+    public Setor(Animal mAnimais, Funcionario mResponsavel, String mSetor) {
         this.mAnimais = mAnimais;
         this.mResponsavel = mResponsavel;
         this.mSetor = mSetor;
