@@ -3,48 +3,48 @@ package Animais;
 import java.util.*;
 
 public class Animal {
-    private final int mCodigo;
-    private final String mNome;
-    private final String mEspecie;
-    private final String mSexo;
-    private final Date mDataNasc;
-    private int mIdade;
+    private final int codigo;
+    private final String nome;
+    private final String especie;
+    private final String sexo;
+    private final Date data_nascimento;
+    private int idade;
 
-    public Animal(int codigo, String nome, String especie, String sexo, Date dataNasc) {
-        this.mCodigo = codigo;
-        this.mNome = nome;
-        this.mEspecie = especie;
-        this.mSexo = sexo;
-        this.mDataNasc = dataNasc;
-        this.mIdade = this.calculaIdade();
+    public Animal(int codigo, String nome, String especie, String sexo, Date data_nascimento) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.especie = especie;
+        this.sexo = sexo;
+        this.data_nascimento = data_nascimento;
+        this.idade = this.calculaIdade();
     }
 
     public int getCodigo() {
-        return mCodigo;
+        return codigo;
     }
 
     public String getNome() {
-        return mNome;
+        return nome;
     }
 
     public String getEspecie() {
-        return mEspecie;
+        return especie;
     }
 
     public String getSexo() {
-        return mSexo;
+        return sexo;
     }
 
     public Date getDataNasc() {
-        return mDataNasc;
+        return data_nascimento;
     }
     
     public int getIdade() {
-        return mIdade;
+        return idade;
     }
 
     public void setIdade(int novaIdade) {
-        this.mIdade = novaIdade;
+        this.idade = novaIdade;
     }
     
     private int calculaIdade() {
