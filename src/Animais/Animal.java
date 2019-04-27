@@ -2,7 +2,7 @@ package Animais;
 
 import java.util.*;
 
-public class Animal {
+public abstract class Animal {
     private final int codigo;
     private final String nome;
     private final String especie;
@@ -47,6 +47,8 @@ public class Animal {
         this.idade = novaIdade;
     }
     
+    public abstract String getTipo_animal();
+    
     private int calculaIdade() {
         // Cria um objeto Calendar com a data de nascimento
         Calendar dataNasc = new GregorianCalendar();
@@ -68,13 +70,10 @@ public class Animal {
         return idade;
     }
     
+    public abstract String conversao_string();
+    
     @Override
     public String toString() {
-        return "Código do animal: " + getCodigo() + "\n" +
-            "Nome do animal: " + getNome() + "\n" +
-            "Espécie do animal: " + getEspecie() + "\n" +
-            "Sexo do animal: " + getSexo() + "\n" +
-            "Data de nascimento do animal: " + getData_nascimento() + "\n" +
-            "Idade do animal: " + getIdade();
+        return conversao_string();
     }
 }

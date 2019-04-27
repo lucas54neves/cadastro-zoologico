@@ -4,21 +4,21 @@ import Funcionarios.*;
 import java.util.*;
 
 public class Setor {
-    private final Animal tipo_animais;
-    private Funcionario responsavel;
     private final int id;
+    private final String nome;
+    private Funcionario responsavel;
     private int quantidade_animais;
     private final List<Animal> lista_animais;
 
-    public Setor(Animal animal, Funcionario responsavel, int id) {
-        this.tipo_animais = animal;
+    public Setor(String nome, Funcionario responsavel, int id) {
+        this.nome = nome;
         this.responsavel = responsavel;
         this.id = id;
         this.lista_animais = new LinkedList<>();
     }
 
-    public Animal getTipo_animais() {
-        return tipo_animais;
+    public String getNome() {
+        return nome;
     }
 
     public Funcionario getResponsavel() {
@@ -43,11 +43,11 @@ public class Setor {
     
     public void adicionarAnimal(Animal animal) {
         try {
-            if (this.getTipo_animais() == animal) {
+            if ((this.nome == null || animal.getTipo_animal() == null) || !this.nome.equals(animal.getTipo_animal())) {
+                throw new IllegalArgumentException("Não é possível adicionar esse animal nesse setor.");
+            } else {
                 lista_animais.add(animal);
                 setQuantidade_animais(getQuantidade_animais() + 1);
-            } else {
-                throw new IllegalArgumentException("Não é possível adicionar esse animal nesse setor.");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -62,9 +62,16 @@ public class Setor {
     
     @Override
     public String toString() {
-        return "Espécie de animais: " + getTipo_animais().getEspecie() + "\n" +
-        "CPF do responsável: " + getResponsavel().getCpf() + "\n" +
-        "ID do setor: " + getId() + "\n" +
-        "Quantidade de animais: " + getQuantidade_animais();
+        String retorno = "Setor " + getId() + "\n";
+        retorno += "Tipo de animais: " + getNome() + "\n";
+        retorno += "CPF do responsável: " + getResponsavel().getCpf() + "\n";
+        
+        for (int i = 0; i < getQuantidade_animais(); i++) {
+            retorno += lista_animais.get(i).toString() + "\n";
+        }
+        
+        retorno += "Quantidade de animais: " + getQuantidade_animais();
+        
+        return retorno;
     }
 }
