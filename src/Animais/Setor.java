@@ -41,7 +41,7 @@ public class Setor {
         this.quantidade_animais = quantidade_animais;
     }
     
-    public void adicionarAnimal(Animal animal) {
+    public void adicionar_animal(Animal animal) {
         try {
             if ((this.nome == null || animal.getTipo_animal() == null) || !this.nome.equals(animal.getTipo_animal())) {
                 throw new IllegalArgumentException("Não é possível adicionar esse animal nesse setor.");

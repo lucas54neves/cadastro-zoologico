@@ -35,7 +35,9 @@ public class Sistema {
         Date data_adminicao, data_nascimento;
         int dia, mes, ano, funcao, opcao = -1, id, tipo;
         Funcionario novo_funcionario;
-        Animal animal;
+        Animal novo_animal = null;
+        Setor setor;
+        List<Setor> setores;
         
         while (opcao != 0) {
             System.out.println("### Menu de adição ###\n");
@@ -108,6 +110,10 @@ public class Sistema {
                     // Salvar em arquivo
                     break;
                 case 2:
+                    // Carrega do arquivo a lista de setores
+                    // *** IMPLEMENTAR ***
+                    setores = new LinkedList<>();
+                    
                     System.out.println("### Cadastro de animal ###");
                     System.out.println("Entre com o ID");
                     id = ler.nextInt();
@@ -140,17 +146,27 @@ public class Sistema {
                     
                     switch (tipo) {
                         case 1:
-                            
+                            novo_animal = new Mamifero(id, nome, especie, sexo, data_nascimento);
                             break;
                         case 2:
-                            
+                            novo_animal = new Reptil(id, nome, especie, sexo, data_nascimento);
                             break;
                         case 3:
-                            
+                            novo_animal = new Ave(id, nome, especie, sexo, data_nascimento);
                             break;
                         case 4:
-                            
+                            novo_animal = new Anfibio(id, nome, especie, sexo, data_nascimento);
                             break;
+                    }
+                    
+                    if (novo_animal != null) {
+                        // Busca o setor referente a esse tipo de animal
+                        setor = busca_setor(setores, novo_animal);
+                        
+                        // Adiciona o animal ao setor correspondente
+                        setor.adicionar_animal(novo_animal);
+                    } else {
+                        System.out.println("Adição do animal ao sistema não foi concluída");
                     }
                     break;
             }
@@ -177,6 +193,20 @@ public class Sistema {
                 case 2:
                     break;
             }
+        }
+    }
+    
+    public Setor busca_setor(List<Setor> setores, Animal animal) {
+        try {
+            for (int i = 0; i < setores.size(); i++) {
+                if ((setores.get(i).getNome() != null && animal.getTipo_animal() != null) && setores.get(i).getNome().equals(animal.getTipo_animal())) {
+                    return setores.get(i);
+                }
+            }
+            throw new IllegalArgumentException("Setor não encontrado");
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+            return null;
         }
     }
     
