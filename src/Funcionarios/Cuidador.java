@@ -6,8 +6,8 @@ public class Cuidador extends Funcionario {
     private int setor;
     private double salario;
     
-    public Cuidador(String cpf, String nome, String sexo, Date data_nascimento, int setor) {
-        super(cpf, nome, sexo, data_nascimento, new Date(), "Cuidador");
+    public Cuidador(String cpf, String nome, String sexo, Date data_nascimento, Date data_adminicao, int setor) {
+        super(cpf, nome, sexo, data_nascimento, data_adminicao, "Cuidador");
         this.setor = setor;
         this.salario = 2500;
     }

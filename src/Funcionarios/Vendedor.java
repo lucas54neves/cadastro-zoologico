@@ -7,12 +7,14 @@ public class Vendedor extends Funcionario {
     private final double salario_inicial;
     private double salario_final;
     private double quantidade_vendas;
+    private int id_loja;
     
-    public Vendedor(String cpf, String nome, String sexo, Date data_nascimento) {
-        super(cpf, nome, sexo, data_nascimento, new Date(), "Vendedor");
+    public Vendedor(String cpf, String nome, String sexo, Date data_nascimento, Date data_adminicao, int id_loja) {
+        super(cpf, nome, sexo, data_nascimento, data_adminicao, "Vendedor");
         this.salario_inicial = 1000;
         this.comissao = 1.15;
         this.quantidade_vendas = 0;
+        this.id_loja = id_loja;
     }
 
     public double getComissao() {

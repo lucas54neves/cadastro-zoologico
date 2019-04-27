@@ -10,7 +10,7 @@ public class Teste {
         
         System.out.println(leao);
         
-        Cuidador cuidador = new Cuidador("123", "Jack", "M", new Date(), 10);
+        Cuidador cuidador = new Cuidador("123", "Jack", "M", new Date(), new Date(), 10);
         
         Setor leoes = new Setor(leao, cuidador, 10);
         

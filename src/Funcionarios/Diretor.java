@@ -6,8 +6,8 @@ public class Diretor extends Funcionario {
     private String diretoria;
     private double salario;
     
-    public Diretor(String cpf, String nome, String sexo, Date data_nascimento, String diretoria) {
-        super(cpf, nome, sexo, data_nascimento, new Date(), "Diretor");
+    public Diretor(String cpf, String nome, String sexo, Date data_nascimento, Date data_adminicao, String diretoria) {
+        super(cpf, nome, sexo, data_nascimento, data_adminicao, "Diretor");
         this.diretoria = diretoria;
         this.salario = 20000;
     }
