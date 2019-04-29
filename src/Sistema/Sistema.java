@@ -218,23 +218,65 @@ public class Sistema {
     
     public void menu_consulta(Zoologico zoo, Scanner ler) {
         int opcao = -1;
+        String cpf, nome, especie;
+        Funcionario funcionario = null;
+        Animal animal = null;
+        boolean encontrado;
+        
         while (opcao != 0) {
-            System.out.println("### Menu de consulta ###\n");
-            System.out.println("Qual operação deseja realizar?\n");
-            System.out.println("[0] - Sair\n");
-            System.out.println("[1] - Consultar um funcionário\n");
+            System.out.println("### Menu de consulta ###");
+            System.out.println("Qual operação deseja realizar?");
+            System.out.println("[0] - Sair");
+            System.out.println("[1] - Consultar um funcionário");
             System.out.println("[2] - Consultar um animal");
-            System.out.println("[2] - Consultar um cliente");
             
-            ler.nextInt();
+            opcao = ler.nextInt();
             
             switch (opcao) {
                 case 0:
-                    System.out.println("Menu principal finalizado");
+                    System.out.println("Menu de consulta finalizado");
                     break;
                 case 1:
+                    System.out.println("Entre com o CPF do funcionário");
+                    cpf = ler.next();
+                    encontrado = false;
+                    
+                    for (int i = 0; i < zoo.getFuncionarios().size() && !encontrado; i++) {
+                        if ((zoo.getFuncionarios().get(i).getCpf() != null && cpf != null) && zoo.getFuncionarios().get(i).getCpf().equals(cpf)) {
+                            funcionario = zoo.getFuncionarios().get(i);
+                            encontrado = true;
+                        }
+                    }
+                    
+                    if (encontrado) {
+                        System.out.println("Funcionário encontrado");
+                        System.out.println(funcionario);
+                    } else {
+                        System.out.println("Funcionário não encontrado");
+                    }
                     break;
                 case 2:
+                    System.out.println("Entre com o nome do animal");
+                    nome = ler.next();
+                    System.out.println("Entre com a espécie do animal");
+                    especie = ler.next();
+                    encontrado = false;
+                    
+                    for (int i = 0; i < zoo.getAnimais().size() && !encontrado; i++) {
+                        if ((zoo.getAnimais().get(i).getNome()!= null && nome != null) &&
+                            (zoo.getAnimais().get(i).getEspecie()!= null && especie != null) &&
+                            (zoo.getAnimais().get(i).getNome().equals(nome) && zoo.getAnimais().get(i).getEspecie().equals(especie))) {
+                            animal = zoo.getAnimais().get(i);
+                            encontrado = true;
+                        }
+                    }
+                    
+                    if (encontrado) {
+                        System.out.println("Animal encontrado");
+                        System.out.println(funcionario);
+                    } else {
+                        System.out.println("Animal não encontrado");
+                    }
                     break;
             }
         }
