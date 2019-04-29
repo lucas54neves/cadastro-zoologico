@@ -69,11 +69,4 @@ public abstract class Animal {
         // Retorna a idade
         return idade;
     }
-    
-    public abstract String conversao_string();
-    
-    @Override
-    public String toString() {
-        return conversao_string();
-    }
 }

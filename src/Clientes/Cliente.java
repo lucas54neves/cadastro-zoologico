@@ -5,23 +5,19 @@ import java.util.*;
 
 public class Cliente {
     private final int id;
-    private final String nome;
     private double valor_gasto;
     private final List setores_visitados;
+    private static int contador = 0;
 
-    public Cliente(int id, String nome) {
-        this.id = id;
-        this.nome = nome;
+    public Cliente() {
+        this.contador++;
+        this.id = this.contador;
         this.valor_gasto = 0;
         this.setores_visitados = new LinkedList();
     }
 
     public int getId() {
         return id;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public double getValor_gasto() {

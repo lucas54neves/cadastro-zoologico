@@ -16,7 +16,7 @@ public class Ave extends Animal {
     }
     
     @Override
-    public String conversao_string() {
+    public String toString() {
         return "Código do animal: " + getCodigo() + "\n" +
             "Nome do animal: " + getNome() + "\n" +
             "Tipo do animal: " + getTipo_animal() + "\n" +

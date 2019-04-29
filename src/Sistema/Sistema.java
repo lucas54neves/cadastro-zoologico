@@ -1,52 +1,58 @@
 package Sistema;
 
 import Animais.*;
+import Clientes.*;
 import Funcionarios.*;
 import java.util.*;
 
 public class Sistema {
-    public void menu_principal(Scanner ler) {
+    public void abrir(Zoologico zoo, Scanner ler) {
+        menu_principal(zoo, ler);
+    }
+    
+    public void menu_principal(Zoologico zoo, Scanner ler) {
         int opcao = -1;
         while (opcao != 0) {
-            System.out.println("### Menu principal ###\n");
-            System.out.println("Qual operação deseja realizar?\n");
-            System.out.println("[0] - Sair\n");
-            System.out.println("[1] - Adicionar algo ao sistema\n");
+            System.out.println("### Menu principal ###");
+            System.out.println("Qual operação deseja realizar?");
+            System.out.println("[0] - Sair");
+            System.out.println("[1] - Adicionar algo ao sistema");
             System.out.println("[2] - Consultar algo do sistema");
             
-            ler.nextInt();
+            opcao = ler.nextInt();
             
             switch (opcao) {
                 case 0:
                     System.out.println("Menu principal finalizado");
                     break;
                 case 1:
-                    menu_principal(ler);
+                    menu_adicao(zoo, ler);
                     break;
                 case 2:
-                    menu_consulta(ler);
+                    menu_consulta(zoo, ler);
                     break;
             }
         }
     }
     
-    public void menu_adicao(Scanner ler) {
+    public void menu_adicao(Zoologico zoo, Scanner ler) {
         String cpf, nome, sexo, diretoria, especie;
         Date data_adminicao, data_nascimento;
-        int dia, mes, ano, funcao, opcao = -1, id, tipo;
-        Funcionario novo_funcionario;
+        int dia, mes, ano, funcao, opcao = -1, id, tipo, setor_visitado = 0, confirmar;
+        Funcionario novo_funcionario = null;
         Animal novo_animal = null;
         Setor setor;
-        List<Setor> setores;
+        Cliente novo_cliente;
         
         while (opcao != 0) {
-            System.out.println("### Menu de adição ###\n");
-            System.out.println("Qual operação deseja realizar?\n");
-            System.out.println("[0] - Sair\n");
-            System.out.println("[1] - Adicionar um funcionário\n");
+            System.out.println("### Menu de adição ###");
+            System.out.println("Qual operação deseja realizar?");
+            System.out.println("[0] - Sair");
+            System.out.println("[1] - Adicionar um funcionário");
             System.out.println("[2] - Adicionar um animal");
+            System.out.println("[3] - Adicionar um cliente");
             
-            ler.nextInt();
+            opcao = ler.nextInt();
             
             switch (opcao) {
                 case 0:
@@ -107,13 +113,22 @@ public class Sistema {
                             break;
                     }
                     
-                    // Salvar em arquivo
+                    System.out.println("Novo Funcionário");
+                    System.out.println(novo_funcionario);
+                    
+                    confirmar = 0;
+                    System.out.println("[0] para apagar registro");
+                    System.out.println("[1] para salvar registro");
+                    confirmar = ler.nextInt();
+                    
+                    if (confirmar == 1) {
+                        zoo.adicionar(novo_funcionario);
+                        System.out.println("Registro salvo");
+                    } else {
+                        System.out.println("Registro apagado");
+                    }
                     break;
                 case 2:
-                    // Carrega do arquivo a lista de setores
-                    // *** IMPLEMENTAR ***
-                    setores = new LinkedList<>();
-                    
                     System.out.println("### Cadastro de animal ###");
                     System.out.println("Entre com o ID");
                     id = ler.nextInt();
@@ -161,19 +176,47 @@ public class Sistema {
                     
                     if (novo_animal != null) {
                         // Busca o setor referente a esse tipo de animal
-                        setor = busca_setor(setores, novo_animal);
+                        setor = zoo.retorna_setor(novo_animal);
                         
-                        // Adiciona o animal ao setor correspondente
-                        setor.adicionar_animal(novo_animal);
+                        // Cria um setor se ainda não existir um setor para esse tipo de animal
+                        if (setor == null) {
+                            setor = new Setor(nome, novo_funcionario);
+                            
+                            // Adiciona o setor ao zoológico
+                            zoo.adicionar(setor);
+                            
+                            // Adiciona o animal ao setor correspondente
+                            setor.adicionar_animal(novo_animal);
+                        } else {
+                            // Adiciona o animal ao setor correspondente
+                            setor.adicionar_animal(novo_animal);
+                        }
                     } else {
                         System.out.println("Adição do animal ao sistema não foi concluída");
                     }
+                    break;
+                case 3:
+                    System.out.println("### Cadastro de clientes ###");
+                    novo_cliente = new Cliente();
+                    
+                    System.out.println("Setores do zoológico");
+                    zoo.mostrar_setores();
+                    
+                    System.out.println("Digite os setores visitador pelo cliente");
+                    System.out.println("Digite -1 para parar de adicionar setores");
+                    
+                    while (setor_visitado != -1) {
+                        setor_visitado = ler.nextInt();
+                        novo_cliente.Visitar(setor_visitado);
+                    }
+                    
+                    zoo.adicionar(novo_cliente);
                     break;
             }
         }
     }
     
-    public void menu_consulta(Scanner ler) {
+    public void menu_consulta(Zoologico zoo, Scanner ler) {
         int opcao = -1;
         while (opcao != 0) {
             System.out.println("### Menu de consulta ###\n");
@@ -181,6 +224,7 @@ public class Sistema {
             System.out.println("[0] - Sair\n");
             System.out.println("[1] - Consultar um funcionário\n");
             System.out.println("[2] - Consultar um animal");
+            System.out.println("[2] - Consultar um cliente");
             
             ler.nextInt();
             
@@ -196,23 +240,10 @@ public class Sistema {
         }
     }
     
-    public Setor busca_setor(List<Setor> setores, Animal animal) {
-        try {
-            for (int i = 0; i < setores.size(); i++) {
-                if ((setores.get(i).getNome() != null && animal.getTipo_animal() != null) && setores.get(i).getNome().equals(animal.getTipo_animal())) {
-                    return setores.get(i);
-                }
-            }
-            throw new IllegalArgumentException("Setor não encontrado");
-        } catch (IllegalArgumentException e) {
-            e.getMessage();
-            return null;
-        }
-    }
-    
     public static void main(String[] args) {
-        Sistema tb = new Sistema();
+        Zoologico zoo = new Zoologico();
+        Sistema sistema = new Sistema();
         Scanner ler = new Scanner(System.in);
-        tb.menu_principal(ler);
+        sistema.abrir(zoo, ler);
     }
 }

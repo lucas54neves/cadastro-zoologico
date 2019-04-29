@@ -6,19 +6,21 @@ public abstract class Funcionario {
     private final String cpf;
     private final String nome;
     private final String sexo;
-    private final Date data_adminicao;
+    private final Date data_admissao;
     private final Date data_nascimento;
     private String funcao;
     private int idade;
+    public static int contador;
 
-    public Funcionario(String cpf, String nome, String sexo, Date data_nascimento, Date data_adminicao, String funcao) {
+    public Funcionario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String funcao) {
         this.cpf = cpf;
         this.nome = nome;
         this.sexo = sexo;
         this.data_nascimento = data_nascimento;
-        this.data_adminicao = data_adminicao;
+        this.data_admissao = data_admissao;
         this.funcao = funcao;
         this.idade = this.calculaIdade();
+        this.contador = 0;
     }
     
     public String getCpf() {
@@ -33,8 +35,8 @@ public abstract class Funcionario {
         return this.sexo;
     }
 
-    public Date getData_adminicao() {
-        return data_adminicao;
+    public Date getData_admissao() {
+        return data_admissao;
     }
 
     public Date getData_nascimento() {

@@ -9,12 +9,14 @@ public class Setor {
     private Funcionario responsavel;
     private int quantidade_animais;
     private final List<Animal> lista_animais;
+    private static int contador = 0;
 
-    public Setor(String nome, Funcionario responsavel, int id) {
+    public Setor(String nome, Funcionario responsavel) {
         this.nome = nome;
         this.responsavel = responsavel;
-        this.id = id;
         this.lista_animais = new LinkedList<>();
+        this.contador++;
+        this.id = contador;
     }
 
     public String getNome() {
