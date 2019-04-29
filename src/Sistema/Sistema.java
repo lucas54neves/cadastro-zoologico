@@ -273,7 +273,7 @@ public class Sistema {
                     
                     if (encontrado) {
                         System.out.println("Animal encontrado");
-                        System.out.println(funcionario);
+                        System.out.println(animal);
                     } else {
                         System.out.println("Animal não encontrado");
                     }
