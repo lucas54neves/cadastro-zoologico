@@ -24,8 +24,7 @@ public class Sistema {
             
             switch (opcao) {
                 case 0:
-                    String path = "/tmp/teste.txt";
-                    zoo.escritor(path);
+                    zoo.salvar();
                     System.out.println("Menu principal finalizado");
                     break;
                 case 1:

@@ -9,6 +9,17 @@ public class Anfibio extends Animal {
         super(id, nome, especie, sexo, data_nascimento);
         this.tipo_animal = "Anfíbio";
     }
+    
+    public String salvar() {
+        return 
+            getCodigo() + "\n" +
+            getNome() + "\n" +
+            getTipo_animal() + "\n" +
+            getEspecie() + "\n" +
+            getSexo() + "\n" +
+            getData_nascimento() + "\n" +
+            getIdade();
+    }
 
     @Override
     public String getTipo_animal() {

@@ -76,13 +76,45 @@ public class Zoologico {
         }
     }
     
-    public void escritor(String path) throws IOException {
-        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-        String linha = "";
-        buffWrite.append(getFuncionarios().size() + "\n");
-        for (int i = 0; i < getFuncionarios().size(); i++) {
-            buffWrite.append(getFuncionarios().get(i) + "\n");
+    public void salvar() throws IOException {
+        BufferedWriter animais = new BufferedWriter(new FileWriter("funcionarios.txt"));
+        BufferedWriter funcionarios = new BufferedWriter(new FileWriter("animais.txt"));
+        BufferedWriter clientes = new BufferedWriter(new FileWriter("clientes"));
+        
+        animais.append(getAnimais().size() + "\n");
+        for (int i = 0; i < getAnimais().size(); i++) {
+            animais.append(getAnimais().get(i) + "\n");
         }
-        buffWrite.close();
+        animais.close();
+        
+        funcionarios.append(getFuncionarios().size() + "\n");
+        for (int i = 0; i < getFuncionarios().size(); i++) {
+            funcionarios.append(getFuncionarios().get(i) + "\n");
+        }
+        funcionarios.close();
+        
+        clientes.append(getClientes().size() + "\n");
+        for (int i = 0; i < getClientes().size(); i++) {
+            clientes.append(getClientes().get(i) + "\n");
+        }
+        clientes.close();
+    }
+    
+    public void ler() throws IOException {
+        /*BufferedReader leitor = new BufferedReader(new FileReader("funcionarios.txt"));
+        int tamanho = Integer.parseInt(leitor.readLine());
+        while(leitor.ready()){
+            getCodigo() + "\n" +
+            getNome() + "\n" +
+            getTipo_animal() + "\n" +
+            getEspecie() + "\n" +
+            getSexo() + "\n" +
+            getData_nascimento() + "\n" +
+            getIdade();
+            
+           String linha = br.read
+           System.out.println(linha);
+        }
+        br.close();*/
     }
 }
