@@ -3,6 +3,7 @@ package Sistema;
 import Animais.*;
 import Clientes.*;
 import Funcionarios.*;
+import java.io.*;
 import java.util.*;
 
 public class Zoologico {
@@ -73,5 +74,15 @@ public class Zoologico {
         for (int i = 0; i < getSetores().size(); i++) {
             System.out.println(getSetores().get(i).getId() + " - " + getSetores().get(i).getNome());
         }
+    }
+    
+    public void escritor(String path) throws IOException {
+        BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
+        String linha = "";
+        buffWrite.append(getFuncionarios().size() + "\n");
+        for (int i = 0; i < getFuncionarios().size(); i++) {
+            buffWrite.append(getFuncionarios().get(i) + "\n");
+        }
+        buffWrite.close();
     }
 }

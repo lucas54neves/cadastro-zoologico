@@ -4,13 +4,14 @@ import Animais.*;
 import Clientes.*;
 import Funcionarios.*;
 import java.util.*;
+import java.io.*;
 
 public class Sistema {
-    public void abrir(Zoologico zoo, Scanner ler) {
+    public void abrir(Zoologico zoo, Scanner ler) throws IOException {
         menu_principal(zoo, ler);
     }
     
-    public void menu_principal(Zoologico zoo, Scanner ler) {
+    public void menu_principal(Zoologico zoo, Scanner ler) throws IOException {
         int opcao = -1;
         while (opcao != 0) {
             System.out.println("### Menu principal ###");
@@ -23,6 +24,8 @@ public class Sistema {
             
             switch (opcao) {
                 case 0:
+                    String path = "/tmp/teste.txt";
+                    zoo.escritor(path);
                     System.out.println("Menu principal finalizado");
                     break;
                 case 1:
@@ -282,7 +285,7 @@ public class Sistema {
         }
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Zoologico zoo = new Zoologico();
         Sistema sistema = new Sistema();
         Scanner ler = new Scanner(System.in);
