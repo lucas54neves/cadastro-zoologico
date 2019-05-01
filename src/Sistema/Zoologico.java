@@ -5,6 +5,8 @@ import Clientes.*;
 import Funcionarios.*;
 import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Zoologico {
     // Lista dos setores do zoológico
@@ -37,6 +39,22 @@ public class Zoologico {
 
     public List<Setor> getSetores() {
         return setores;
+    }
+
+    public void setSetores(List<Setor> setores) {
+        this.setores = setores;
+    }
+
+    public void setAnimais(List<Animal> animais) {
+        this.animais = animais;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
     
     public void adicionar(Animal novo_animal) {
@@ -76,45 +94,32 @@ public class Zoologico {
         }
     }
     
-    public void salvar() throws IOException {
-        BufferedWriter animais = new BufferedWriter(new FileWriter("funcionarios.txt"));
-        BufferedWriter funcionarios = new BufferedWriter(new FileWriter("animais.txt"));
-        BufferedWriter clientes = new BufferedWriter(new FileWriter("clientes"));
-        
-        animais.append(getAnimais().size() + "\n");
-        for (int i = 0; i < getAnimais().size(); i++) {
-            animais.append(getAnimais().get(i) + "\n");
+    public void salvar() {
+        File arquivo_funcionarios = new File("funcionarios.zoo");
+        try {
+            arquivo_funcionarios.delete();
+            arquivo_funcionarios.createNewFile();
+            
+            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(arquivo_funcionarios));
+            objOutput.writeObject(getFuncionarios());
+            
+            objOutput.close();
+        } catch(IOException erro) {
+            System.out.printf("Erro: %s", erro.getMessage());
         }
-        animais.close();
-        
-        funcionarios.append(getFuncionarios().size() + "\n");
-        for (int i = 0; i < getFuncionarios().size(); i++) {
-            funcionarios.append(getFuncionarios().get(i) + "\n");
-        }
-        funcionarios.close();
-        
-        clientes.append(getClientes().size() + "\n");
-        for (int i = 0; i < getClientes().size(); i++) {
-            clientes.append(getClientes().get(i) + "\n");
-        }
-        clientes.close();
     }
     
-    public void ler() throws IOException {
-        /*BufferedReader leitor = new BufferedReader(new FileReader("funcionarios.txt"));
-        int tamanho = Integer.parseInt(leitor.readLine());
-        while(leitor.ready()){
-            getCodigo() + "\n" +
-            getNome() + "\n" +
-            getTipo_animal() + "\n" +
-            getEspecie() + "\n" +
-            getSexo() + "\n" +
-            getData_nascimento() + "\n" +
-            getIdade();
-            
-           String linha = br.read
-           System.out.println(linha);
+    public void ler() {
+        try {
+            File arquivo_funcionarios = new File("funcionarios.zoo");
+            if (arquivo_funcionarios.exists()) {
+                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(arquivo_funcionarios));
+                setFuncionarios((ArrayList<Funcionario>)objInput.readObject());
+                
+                objInput.close();
+            }
+        } catch(IOException | ClassNotFoundException erro1) {
+          System.out.printf("Erro: %s", erro1.getMessage());
         }
-        br.close();*/
     }
 }

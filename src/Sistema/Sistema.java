@@ -8,6 +8,7 @@ import java.io.*;
 
 public class Sistema {
     public void abrir(Zoologico zoo, Scanner ler) throws IOException {
+        zoo.ler();
         menu_principal(zoo, ler);
     }
     
