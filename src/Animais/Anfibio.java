@@ -3,37 +3,18 @@ package Animais;
 import java.util.*;
 
 public class Anfibio extends Animal {
-    private final String tipo_animal;
-    
-    public Anfibio(int id, String nome, String especie, String sexo, Date data_nascimento) {
-        super(id, nome, especie, sexo, data_nascimento);
-        this.tipo_animal = "Anfíbio";
-    }
-    
-    public String salvar() {
-        return 
-            getCodigo() + "\n" +
-            getNome() + "\n" +
-            getTipo_animal() + "\n" +
-            getEspecie() + "\n" +
-            getSexo() + "\n" +
-            getData_nascimento() + "\n" +
-            getIdade();
-    }
-
-    @Override
-    public String getTipo_animal() {
-        return tipo_animal;
+    public Anfibio(String nome, String especie, String sexo, Date data_nascimento) {
+        super(nome, especie, sexo, data_nascimento);
     }
     
     @Override
     public String toString() {
-        return "Código do animal: " + getCodigo() + "\n" +
-            "Nome do animal: " + getNome() + "\n" +
-            "Tipo do animal: " + getTipo_animal() + "\n" +
-            "Espécie do animal: " + getEspecie() + "\n" +
-            "Sexo do animal: " + getSexo() + "\n" +
-            "Data de nascimento do animal: " + getData_nascimento() + "\n" +
-            "Idade do animal: " + getIdade();
+        return
+            "Código: " + getCodigo() + "\n" +
+            "Nome: " + getNome() + "\n" +
+            "Espécie: " + getEspecie() + "\n" +
+            "Sexo: " + getSexo() + "\n" +
+            "Data de nascimento: " + getData_nascimento() + "\n" +
+            "Idade: " + getIdade();
     }
 }

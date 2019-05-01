@@ -3,10 +3,7 @@ package Sistema;
 import Animais.*;
 import Clientes.*;
 import Funcionarios.*;
-import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Zoologico {
     // Lista dos setores do zoológico
@@ -23,6 +20,7 @@ public class Zoologico {
         this.animais = new LinkedList<>();
         this.funcionarios = new LinkedList<>();
         this.clientes = new LinkedList<>();
+        this.setores = new LinkedList<>();
     }
 
     public List<Animal> getAnimais() {
@@ -76,50 +74,73 @@ public class Zoologico {
     public Setor retorna_setor(Animal animal) {
         try {
             for (int i = 0; i < getSetores().size(); i++) {
-                if ((getSetores().get(i).getNome() != null && animal.getTipo_animal() != null) && getSetores().get(i).getNome().equals(animal.getTipo_animal())) {
+                if (animal.getEspecie().equals(getSetores().get(i).getEspecie_animais())) {
                     return getSetores().get(i);
                 }
             }
-            throw new IllegalArgumentException("Setor não encontrado");
+            throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
-            e.getMessage();
+            System.out.println("Setor não encontrado.");
+            return null;
+        }
+    }
+    
+    public Funcionario retorna_funcionario(String cpf) {
+        try {
+            for (int i = 0; i < getFuncionarios().size(); i++) {
+                if (cpf.equals(getFuncionarios().get(i).getCpf())) {
+                    return getFuncionarios().get(i);
+                }
+            }
+            throw new IllegalArgumentException();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Funcionário não encontrado.");
             return null;
         }
     }
     
     public void mostrar_setores() {
-        System.out.println("Setores");
+        System.out.println("=== Setores ===");
         for (int i = 0; i < getSetores().size(); i++) {
-            System.out.println(getSetores().get(i).getId() + " - " + getSetores().get(i).getNome());
+            System.out.println(getSetores().get(i));
         }
     }
     
-    public void salvar() {
-        File arquivo_funcionarios = new File("funcionarios.zoo");
-        try {
-            arquivo_funcionarios.delete();
-            arquivo_funcionarios.createNewFile();
-            
-            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(arquivo_funcionarios));
-            objOutput.writeObject(getFuncionarios());
-            
-            objOutput.close();
-        } catch(IOException erro) {
-            System.out.printf("Erro: %s", erro.getMessage());
-        }
-    }
-    
-    public void ler() {
-        try {
-            File arquivo_funcionarios = new File("funcionarios.zoo");
-            if (arquivo_funcionarios.exists()) {
-                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(arquivo_funcionarios));
-                setFuncionarios((ArrayList<Funcionario>)objInput.readObject());
-                
-                objInput.close();
+    public Animal retorna_animal(String nome, String especie) {
+        for (int i = 0; i < getAnimais().size(); i++) {
+            if (getAnimais().get(i).getNome().equals(nome) && getAnimais().get(i).getEspecie().equals(especie)) {
+                return getAnimais().get(i);
             }
-        } catch(IOException | ClassNotFoundException erro1) {
-          System.out.printf("Erro: %s", erro1.getMessage());
         }
+        return null;
     }
+    
+//    public void salvar() {
+//        File arquivo_funcionarios = new File("funcionarios.zoo");
+//        try {
+//            arquivo_funcionarios.delete();
+//            arquivo_funcionarios.createNewFile();
+//            
+//            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(arquivo_funcionarios));
+//            objOutput.writeObject(getFuncionarios());
+//            
+//            objOutput.close();
+//        } catch(IOException erro) {
+//            System.out.printf("Erro: %s", erro.getMessage());
+//        }
+//    }
+    
+//    public void ler() {
+//        try {
+//            File arquivo_funcionarios = new File("funcionarios.zoo");
+//            if (arquivo_funcionarios.exists()) {
+//                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(arquivo_funcionarios));
+//                setFuncionarios((ArrayList<Funcionario>)objInput.readObject());
+//                
+//                objInput.close();
+//            }
+//        } catch(IOException | ClassNotFoundException erro1) {
+//          System.out.printf("Erro: %s", erro1.getMessage());
+//        }
+//    }
 }

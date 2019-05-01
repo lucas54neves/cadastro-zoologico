@@ -8,7 +8,6 @@ import java.io.*;
 
 public class Sistema {
     public void abrir(Zoologico zoo, Scanner ler) throws IOException {
-        zoo.ler();
         menu_principal(zoo, ler);
     }
     
@@ -25,7 +24,6 @@ public class Sistema {
             
             switch (opcao) {
                 case 0:
-                    zoo.salvar();
                     System.out.println("Menu principal finalizado");
                     break;
                 case 1:
@@ -39,13 +37,14 @@ public class Sistema {
     }
     
     public void menu_adicao(Zoologico zoo, Scanner ler) {
-        String cpf, nome, sexo, diretoria, especie;
+        String cpf, nome, sexo, diretoria, especie, tipo_agua;
         Date data_adminicao, data_nascimento;
-        int dia, mes, ano, funcao, opcao = -1, id, tipo, setor_visitado = 0, confirmar;
+        int dia, mes, ano, funcao, opcao = -1, id, tipo, setor_visitado = 0, confirmar, gestacao;
         Funcionario novo_funcionario = null;
         Animal novo_animal = null;
         Setor setor;
         Cliente novo_cliente;
+        boolean esta_gestacao, pode_voar;
         
         while (opcao != 0) {
             System.out.println("### Menu de adição ###");
@@ -54,6 +53,7 @@ public class Sistema {
             System.out.println("[1] - Adicionar um funcionário");
             System.out.println("[2] - Adicionar um animal");
             System.out.println("[3] - Adicionar um cliente");
+            System.out.println();
             
             opcao = ler.nextInt();
             
@@ -118,8 +118,7 @@ public class Sistema {
                     
                     System.out.println("Novo Funcionário");
                     System.out.println(novo_funcionario);
-                    
-                    confirmar = 0;
+                    System.out.println();
                     System.out.println("[0] para apagar registro");
                     System.out.println("[1] para salvar registro");
                     confirmar = ler.nextInt();
@@ -133,27 +132,30 @@ public class Sistema {
                     break;
                 case 2:
                     System.out.println("### Cadastro de animal ###");
-                    System.out.println("Entre com o ID");
-                    id = ler.nextInt();
+                    System.out.println();
                     
                     System.out.println("Entre com o nome");
                     nome = ler.next();
+                    System.out.println();
                     
-                    System.out.println("Entre com a espécie");
-                    
+                    System.out.println("Entre com a espécie. [Macho/Fêmea]");
                     especie = ler.next();
+                    System.out.println();
                     
                     System.out.println("Entre com o tipo");
                     System.out.println("[1] - Mamífero");
                     System.out.println("[2] - Réptil");
                     System.out.println("[3] - Ave");
                     System.out.println("[4] - Anfíbio");
+                    System.out.println("[5] - Peixe");
                     tipo = ler.nextInt();
+                    System.out.println();
                     
                     System.out.println("Entre com o sexo");
                     sexo = ler.next();
+                    System.out.println();
                     
-                    System.out.println("Cadastro da data de nascimento");
+                    System.out.println("# Cadastro da data de nascimento #");
                     System.out.println("Entre com o dia de nascimento");
                     dia = ler.nextInt();
                     System.out.println("Entre com o mês de nascimento");
@@ -161,19 +163,49 @@ public class Sistema {
                     System.out.println("Entre com o ano de nascimento");
                     ano = ler.nextInt();
                     data_nascimento = new Date(ano - 1900, mes - 1, dia);
+                    System.out.println();
                     
                     switch (tipo) {
                         case 1:
-                            novo_animal = new Mamifero(id, nome, especie, sexo, data_nascimento);
+                            System.out.println("O animal encontra-se em gestação?");
+                            System.out.println("[0] - Não");
+                            System.out.println("[1] - Sim");
+                            gestacao = ler.nextInt();
+                            System.out.println();
+                            
+                            esta_gestacao = gestacao == 1;
+                            
+                            novo_animal = new Mamifero(nome, especie, sexo, data_nascimento, esta_gestacao);
                             break;
                         case 2:
-                            novo_animal = new Reptil(id, nome, especie, sexo, data_nascimento);
+                            System.out.println("Entre com o tipo de réptil.");
+                            System.out.println("Escamoso, Crocodiliano ou Quelônio");
+                            String tipo_reptil = ler.next();
+                            System.out.println();
+
+                            novo_animal = new Reptil(nome, especie, sexo, data_nascimento, tipo_reptil);
                             break;
                         case 3:
-                            novo_animal = new Ave(id, nome, especie, sexo, data_nascimento);
+                            System.out.println("O animal encontra-se em gestação?");
+                            System.out.println("[0] - Não");
+                            System.out.println("[1] - Sim");
+                            int voa = ler.nextInt();
+                            System.out.println();
+
+                            pode_voar = voa == 1;
+                            
+                            novo_animal = new Ave(nome, especie, sexo, data_nascimento, pode_voar);
                             break;
                         case 4:
-                            novo_animal = new Anfibio(id, nome, especie, sexo, data_nascimento);
+                            novo_animal = new Anfibio(nome, especie, sexo, data_nascimento);
+                            break;
+                        case 5:
+                            System.out.println("Qual o tipo de água desse paixe?");
+                            System.out.println("[Água salgada / Água doce]");
+                            tipo_agua = ler.next();
+                            System.out.println();
+                            
+                            novo_animal = new Peixe(nome, especie, sexo, data_nascimento, tipo_agua);
                             break;
                     }
                     
@@ -183,6 +215,12 @@ public class Sistema {
                         
                         // Cria um setor se ainda não existir um setor para esse tipo de animal
                         if (setor == null) {
+                            System.out.println("Qual setá o funcionário responsável por esse setor?");
+                            System.out.println("Entre com o CPF do funcionário");
+                            cpf = ler.next();
+                            System.out.println();
+                            
+                            novo_funcionario = zoo.retorna_funcionario(cpf);
                             setor = new Setor(nome, novo_funcionario);
                             
                             // Adiciona o setor ao zoológico
@@ -204,8 +242,8 @@ public class Sistema {
                     
                     System.out.println("Setores do zoológico");
                     zoo.mostrar_setores();
-                    
-                    System.out.println("Digite os setores visitador pelo cliente");
+                    System.out.println();
+                    System.out.println("Digite os ID dos setores visitados pelo cliente");
                     System.out.println("Digite -1 para parar de adicionar setores");
                     
                     while (setor_visitado != -1) {
@@ -222,9 +260,8 @@ public class Sistema {
     public void menu_consulta(Zoologico zoo, Scanner ler) {
         int opcao = -1;
         String cpf, nome, especie;
-        Funcionario funcionario = null;
-        Animal animal = null;
-        boolean encontrado;
+        Funcionario funcionario;
+        Animal animal;
         
         while (opcao != 0) {
             System.out.println("### Menu de consulta ###");
@@ -232,6 +269,7 @@ public class Sistema {
             System.out.println("[0] - Sair");
             System.out.println("[1] - Consultar um funcionário");
             System.out.println("[2] - Consultar um animal");
+            System.out.println();
             
             opcao = ler.nextInt();
             
@@ -242,20 +280,17 @@ public class Sistema {
                 case 1:
                     System.out.println("Entre com o CPF do funcionário");
                     cpf = ler.next();
-                    encontrado = false;
+                    System.out.println();
                     
-                    for (int i = 0; i < zoo.getFuncionarios().size() && !encontrado; i++) {
-                        if ((zoo.getFuncionarios().get(i).getCpf() != null && cpf != null) && zoo.getFuncionarios().get(i).getCpf().equals(cpf)) {
-                            funcionario = zoo.getFuncionarios().get(i);
-                            encontrado = true;
-                        }
-                    }
+                    funcionario = zoo.retorna_funcionario(cpf);
                     
-                    if (encontrado) {
+                    if (funcionario != null) {
                         System.out.println("Funcionário encontrado");
                         System.out.println(funcionario);
+                        System.out.println();
                     } else {
                         System.out.println("Funcionário não encontrado");
+                        System.out.println();
                     }
                     break;
                 case 2:
@@ -263,22 +298,18 @@ public class Sistema {
                     nome = ler.next();
                     System.out.println("Entre com a espécie do animal");
                     especie = ler.next();
-                    encontrado = false;
+                    System.out.println();
                     
-                    for (int i = 0; i < zoo.getAnimais().size() && !encontrado; i++) {
-                        if ((zoo.getAnimais().get(i).getNome()!= null && nome != null) &&
-                            (zoo.getAnimais().get(i).getEspecie()!= null && especie != null) &&
-                            (zoo.getAnimais().get(i).getNome().equals(nome) && zoo.getAnimais().get(i).getEspecie().equals(especie))) {
-                            animal = zoo.getAnimais().get(i);
-                            encontrado = true;
-                        }
-                    }
+                    animal = zoo.retorna_animal(nome, especie);
                     
-                    if (encontrado) {
+                    
+                    if (animal != null) {
                         System.out.println("Animal encontrado");
                         System.out.println(animal);
+                        System.out.println();
                     } else {
                         System.out.println("Animal não encontrado");
+                        System.out.println();
                     }
                     break;
             }

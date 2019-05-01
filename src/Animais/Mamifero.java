@@ -3,37 +3,33 @@ package Animais;
 import java.util.*;
 
 public class Mamifero extends Animal {
-    private final String tipo_animal;
+    private boolean em_gestacao;
     
-    public Mamifero(int id, String nome, String especie, String sexo, Date data_nascimento) {
-        super(id, nome, especie, sexo, data_nascimento);
-        this.tipo_animal = "Mamífero";
-    }
-    
-    public String salvar() {
-        return 
-            getCodigo() + "\n" +
-            getNome() + "\n" +
-            getTipo_animal() + "\n" +
-            getEspecie() + "\n" +
-            getSexo() + "\n" +
-            getData_nascimento() + "\n" +
-            getIdade();
+    public Mamifero(String nome, String especie, String sexo, Date data_nascimento, boolean em_gestacao) {
+        super(nome, especie, sexo, data_nascimento);
+        this.em_gestacao = em_gestacao;
     }
 
-    @Override
-    public String getTipo_animal() {
-        return tipo_animal;
+    public boolean isEm_gestacao() {
+        return em_gestacao;
+    }
+
+    public void setEm_gestacao(boolean em_gestacao) {
+        this.em_gestacao = em_gestacao;
     }
     
     @Override
     public String toString() {
-        return "Código do animal: " + getCodigo() + "\n" +
-            "Nome do animal: " + getNome() + "\n" +
-            "Tipo do animal: " + getTipo_animal() + "\n" +
-            "Espécie do animal: " + getEspecie() + "\n" +
-            "Sexo do animal: " + getSexo() + "\n" +
-            "Data de nascimento do animal: " + getData_nascimento() + "\n" +
-            "Idade do animal: " + getIdade();
+        String retorno = "Código do animal: " + getCodigo() + "\n";
+        retorno += "Nome do animal: " + getNome() + "\n";
+        retorno += "Espécie do animal: " + getEspecie() + "\n";
+        retorno += "Sexo do animal: " + getSexo() + "\n";
+        if ("Fêmea".equals(getEspecie())) {
+            retorno += "Em gestação: " + isEm_gestacao() + "\n";
+        }
+        retorno += "Data de nascimento do animal: " + getData_nascimento() + "\n";
+        retorno += "Idade do animal: " + getIdade();
+        
+        return retorno;
     }
 }

@@ -3,15 +3,17 @@ package Animais;
 import java.util.*;
 
 public abstract class Animal {
-    private final int codigo;
-    private final String nome;
-    private final String especie;
-    private final String sexo;
-    private final Date data_nascimento;
+    private static int contador = 0;
+    private int codigo;
+    private String nome;
+    private String especie;
+    private String sexo;
+    private Date data_nascimento;
     private int idade;
 
-    public Animal(int codigo, String nome, String especie, String sexo, Date data_nascimento) {
-        this.codigo = codigo;
+    public Animal(String nome, String especie, String sexo, Date data_nascimento) {
+        Animal.contador++;
+        this.codigo = contador;
         this.nome = nome;
         this.especie = especie;
         this.sexo = sexo;
@@ -43,11 +45,33 @@ public abstract class Animal {
         return idade;
     }
 
-    public void setIdade(int novaIdade) {
-        this.idade = novaIdade;
+    public static void setContador(int contador) {
+        Animal.contador = contador;
     }
-    
-    public abstract String getTipo_animal();
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setData_nascimento(Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
     
     private int calculaIdade() {
         // Cria um objeto Calendar com a data de nascimento
