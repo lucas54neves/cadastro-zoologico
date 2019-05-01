@@ -1,8 +1,9 @@
 package Animais;
 
+import java.io.*;
 import java.util.*;
 
-public abstract class Animal {
+public abstract class Animal implements Serializable  {
     private static int contador = 0;
     private int codigo;
     private String nome;

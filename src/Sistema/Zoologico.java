@@ -3,9 +3,12 @@ package Sistema;
 import Animais.*;
 import Clientes.*;
 import Funcionarios.*;
+import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Zoologico {
+public class Zoologico implements Serializable {
     // Lista dos setores do zoológico
     private List<Setor> setores;
     // Lista com os animais do zoológico
@@ -115,32 +118,111 @@ public class Zoologico {
         return null;
     }
     
-//    public void salvar() {
-//        File arquivo_funcionarios = new File("funcionarios.zoo");
-//        try {
-//            arquivo_funcionarios.delete();
-//            arquivo_funcionarios.createNewFile();
-//            
-//            ObjectOutputStream objOutput = new ObjectOutputStream(new FileOutputStream(arquivo_funcionarios));
-//            objOutput.writeObject(getFuncionarios());
-//            
-//            objOutput.close();
-//        } catch(IOException erro) {
-//            System.out.printf("Erro: %s", erro.getMessage());
-//        }
-//    }
+    public void salvar() {
+        // Salva a lista com todos os setores em um aquivo
+        try {
+            File file = new File("setores.bin");
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(getSetores());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage() );
+        }
+        
+        // Salva a lista com todos os animais em um aquivo
+        try {
+            File file = new File("animais.bin");
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(getAnimais());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage() );
+        }
+        
+        // Salva a lista com todos os funcionários em um aquivo
+        try {
+            File file = new File("funcionarios.bin");
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(getFuncionarios());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage() );
+        }
+        
+        // Salva a lista com todos os clientes em um aquivo
+        try {
+            File file = new File("clientes.bin");
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            out.writeObject(getClientes());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
     
-//    public void ler() {
-//        try {
-//            File arquivo_funcionarios = new File("funcionarios.zoo");
-//            if (arquivo_funcionarios.exists()) {
-//                ObjectInputStream objInput = new ObjectInputStream(new FileInputStream(arquivo_funcionarios));
-//                setFuncionarios((ArrayList<Funcionario>)objInput.readObject());
-//                
-//                objInput.close();
-//            }
-//        } catch(IOException | ClassNotFoundException erro1) {
-//          System.out.printf("Erro: %s", erro1.getMessage());
-//        }
-//    }
+    public void ler() {
+        // Lê o arquivo dos setores e recupera os dados
+        try {
+            File file = new File("setores.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            setSetores((List<Setor>) in.readObject());
+            in.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Zoologico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Lê o arquivo dos animais e recupera os dados
+        try {
+            File file = new File("animais.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            setAnimais((List<Animal>) in.readObject());
+            in.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Zoologico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Lê o arquivo dos funcionários e recupera os dados
+        try {
+            File file = new File("funcionarios.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            setFuncionarios((List<Funcionario>) in.readObject());
+            in.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Zoologico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // Lê o arquivo dos clientes e recupera os dados
+        try {
+            File file = new File("clientes.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            setClientes((List<Cliente>) in.readObject());
+            in.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. nao existe. Causa: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Erro de E/S. Causa: " + e.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Zoologico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

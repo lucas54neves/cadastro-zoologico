@@ -1,17 +1,18 @@
 package Clientes;
 
 import Funcionarios.*;
+import java.io.*;
 import java.util.*;
 
-public class Cliente {
+public class Cliente implements Serializable {
     private final int id;
     private double valor_gasto;
     private final List setores_visitados;
     private static int contador = 0;
 
     public Cliente() {
-        this.contador++;
-        this.id = this.contador;
+        Cliente.contador++;
+        this.id = Cliente.contador;
         this.valor_gasto = 0;
         this.setores_visitados = new LinkedList();
     }

@@ -8,6 +8,7 @@ import java.io.*;
 
 public class Sistema {
     public void abrir(Zoologico zoo, Scanner ler) throws IOException {
+        zoo.ler();
         menu_principal(zoo, ler);
     }
     
@@ -25,6 +26,7 @@ public class Sistema {
             switch (opcao) {
                 case 0:
                     System.out.println("Menu principal finalizado");
+                    zoo.salvar();
                     break;
                 case 1:
                     menu_adicao(zoo, ler);
@@ -138,7 +140,7 @@ public class Sistema {
                     nome = ler.next();
                     System.out.println();
                     
-                    System.out.println("Entre com a espécie. [Macho/Fêmea]");
+                    System.out.println("Entre com a espécie.");
                     especie = ler.next();
                     System.out.println();
                     
@@ -151,7 +153,7 @@ public class Sistema {
                     tipo = ler.nextInt();
                     System.out.println();
                     
-                    System.out.println("Entre com o sexo");
+                    System.out.println("Entre com o sexo [Macho/Fêmea]");
                     sexo = ler.next();
                     System.out.println();
                     

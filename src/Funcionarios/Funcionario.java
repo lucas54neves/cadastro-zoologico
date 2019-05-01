@@ -1,8 +1,9 @@
 package Funcionarios;
 
+import java.io.*;
 import java.util.*;
 
-public abstract class Funcionario {
+public abstract class Funcionario  implements Serializable  {
     private final String cpf;
     private final String nome;
     private final String sexo;
