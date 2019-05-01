@@ -20,8 +20,8 @@ public class Sistema {
             System.out.println("[0] - Sair");
             System.out.println("[1] - Adicionar algo ao sistema");
             System.out.println("[2] - Consultar algo do sistema");
-            
             opcao = ler.nextInt();
+            System.out.println();
             
             switch (opcao) {
                 case 0:
@@ -55,9 +55,8 @@ public class Sistema {
             System.out.println("[1] - Adicionar um funcionário");
             System.out.println("[2] - Adicionar um animal");
             System.out.println("[3] - Adicionar um cliente");
-            System.out.println();
-            
             opcao = ler.nextInt();
+            System.out.println();
             
             switch (opcao) {
                 case 0:
@@ -72,14 +71,16 @@ public class Sistema {
                     
                     System.out.println("Entre com o sexo do novo funcionário");
                     sexo = ler.next();
+                    System.out.println();
                     
                     System.out.println("Entre com a função do novo funcionário");
                     System.out.println("[1] - Diretor");
                     System.out.println("[2] - Cuidador");
                     System.out.println("[3] - Vendedor");
                     funcao = ler.nextInt();
+                    System.out.println();
                     
-                    System.out.println("Cadastro da data de nascimento");
+                    System.out.println("# Cadastro da data de nascimento #");
                     System.out.println("Entre com o dia de nascimento");
                     dia = ler.nextInt();
                     System.out.println("Entre com o mês de nascimento");
@@ -87,8 +88,9 @@ public class Sistema {
                     System.out.println("Entre com o ano de nascimento");
                     ano = ler.nextInt();
                     data_nascimento = new Date(ano - 1900, mes - 1, dia);
+                    System.out.println();
                     
-                    System.out.println("Cadastro da data de adminição");
+                    System.out.println("# Cadastro da data de adminição #");
                     System.out.println("Entre com o dia da adminição");
                     dia = ler.nextInt();
                     System.out.println("Entre com o mês da adminição");
@@ -96,6 +98,7 @@ public class Sistema {
                     System.out.println("Entre com o ano da adminição");
                     ano = ler.nextInt();
                     data_adminicao = new Date(ano - 1900, mes - 1, dia);
+                    System.out.println();
                     
                     switch (funcao) {
                         case 1:
@@ -121,9 +124,11 @@ public class Sistema {
                     System.out.println("Novo Funcionário");
                     System.out.println(novo_funcionario);
                     System.out.println();
-                    System.out.println("[0] para apagar registro");
-                    System.out.println("[1] para salvar registro");
+                    System.out.println("Deseja salvar o registro?");
+                    System.out.println("[0] para apagar");
+                    System.out.println("[1] para salvar");
                     confirmar = ler.nextInt();
+                    System.out.println();
                     
                     if (confirmar == 1) {
                         zoo.adicionar(novo_funcionario);
@@ -223,7 +228,7 @@ public class Sistema {
                             System.out.println();
                             
                             novo_funcionario = zoo.retorna_funcionario(cpf);
-                            setor = new Setor(nome, novo_funcionario);
+                            setor = new Setor(novo_animal.getEspecie(), novo_funcionario);
                             
                             // Adiciona o setor ao zoológico
                             zoo.adicionar(setor);
@@ -271,9 +276,8 @@ public class Sistema {
             System.out.println("[0] - Sair");
             System.out.println("[1] - Consultar um funcionário");
             System.out.println("[2] - Consultar um animal");
-            System.out.println();
-            
             opcao = ler.nextInt();
+            System.out.println();
             
             switch (opcao) {
                 case 0:

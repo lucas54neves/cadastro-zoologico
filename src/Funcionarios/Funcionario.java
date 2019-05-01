@@ -4,14 +4,14 @@ import java.io.*;
 import java.util.*;
 
 public abstract class Funcionario  implements Serializable  {
-    private final String cpf;
-    private final String nome;
-    private final String sexo;
-    private final Date data_admissao;
-    private final Date data_nascimento;
+    private String cpf;
+    private String nome;
+    private String sexo;
+    private Date data_admissao;
+    private Date data_nascimento;
     private String funcao;
     private int idade;
-    public static int contador;
+    public static int contador = 0;
 
     public Funcionario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String funcao) {
         this.cpf = cpf;
@@ -21,7 +21,7 @@ public abstract class Funcionario  implements Serializable  {
         this.data_admissao = data_admissao;
         this.funcao = funcao;
         this.idade = this.calculaIdade();
-        this.contador = 0;
+        Funcionario.contador++;
     }
     
     public String getCpf() {
@@ -52,28 +52,52 @@ public abstract class Funcionario  implements Serializable  {
         return this.funcao;
     }
 
-    public void setFuncao(String novaFuncao) {
-        this.funcao = novaFuncao;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setData_admissao(Date data_admissao) {
+        this.data_admissao = data_admissao;
+    }
+
+    public void setData_nascimento(Date data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    public void setFuncao(String funcao) {
+        this.funcao = funcao;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
     
     private int calculaIdade() {
         // Cria um objeto Calendar com a data de nascimento
-        Calendar data_nascimento = new GregorianCalendar();
-        data_nascimento.setTime(this.getData_nascimento());
+        Calendar nascimento = new GregorianCalendar();
+        nascimento.setTime(this.getData_nascimento());
         
         // Cria um objeto Calendar com a data atual
         Calendar dataAtual = Calendar.getInstance();
         
         // Obtém a idade baseado no ano
-        int idade = dataAtual.get(Calendar.YEAR) - data_nascimento.get(Calendar.YEAR);
+        int i = dataAtual.get(Calendar.YEAR) - nascimento.get(Calendar.YEAR);
         
         // Corrige caso o funcionário não tenha feito aniversário no ano
-        if (dataAtual.get(Calendar.MONTH) <= data_nascimento.get(Calendar.MONTH) &&
-            dataAtual.get(Calendar.DAY_OF_MONTH) < data_nascimento.get(Calendar.DAY_OF_MONTH)) {
-            idade--;
+        if (dataAtual.get(Calendar.MONTH) <= nascimento.get(Calendar.MONTH) &&
+            dataAtual.get(Calendar.DAY_OF_MONTH) < nascimento.get(Calendar.DAY_OF_MONTH)) {
+            i--;
         }
         
         // Retorna a idade
-        return idade;
+        return i;
     }
 }
