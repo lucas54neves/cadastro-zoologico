@@ -9,17 +9,15 @@ public abstract class Funcionario  implements Serializable  {
     private String sexo;
     private Date data_admissao;
     private Date data_nascimento;
-    private String funcao;
     private int idade;
     public static int contador = 0;
 
-    public Funcionario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String funcao) {
+    public Funcionario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao) {
         this.cpf = cpf;
         this.nome = nome;
         this.sexo = sexo;
         this.data_nascimento = data_nascimento;
         this.data_admissao = data_admissao;
-        this.funcao = funcao;
         this.idade = this.calculaIdade();
         Funcionario.contador++;
     }
@@ -48,10 +46,6 @@ public abstract class Funcionario  implements Serializable  {
         return idade;
     }
 
-    public String getFuncao() {
-        return this.funcao;
-    }
-
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
@@ -70,10 +64,6 @@ public abstract class Funcionario  implements Serializable  {
 
     public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
-    }
-
-    public void setFuncao(String funcao) {
-        this.funcao = funcao;
     }
 
     public void setIdade(int idade) {

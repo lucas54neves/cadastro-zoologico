@@ -7,8 +7,8 @@ public class Veterinario extends Funcionario {
     private int id;
     private double salario;
 
-    public Veterinario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String funcao, String numero_crmv) {
-        super(cpf, nome, sexo, data_nascimento, data_admissao, funcao);
+    public Veterinario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String numero_crmv) {
+        super(cpf, nome, sexo, data_nascimento, data_admissao);
         this.numero_crmv = numero_crmv;
         Funcionario.contador++;
         this.id = Funcionario.contador;
@@ -48,7 +48,7 @@ public class Veterinario extends Funcionario {
     public String toString() {
         return
             "ID do funcionário: " + getId() + "\n" +
-            "Função: " + getFuncao() + "\n" +
+            "Função: " + retorna_funcao() + "\n" +
             "CRMV: " + getNumero_crmv()+ "\n" +
             "Nome: " + getNome() + "\n" +
             "CPF: " + getCpf() + "\n" +

@@ -11,6 +11,7 @@ public abstract class Animal implements Serializable  {
     private String sexo;
     private Date data_nascimento;
     private int idade;
+    private Setor setor;
 
     public Animal(String nome, String especie, String sexo, Date data_nascimento) {
         Animal.contador++;
@@ -20,6 +21,7 @@ public abstract class Animal implements Serializable  {
         this.sexo = sexo;
         this.data_nascimento = data_nascimento;
         this.idade = calculaIdade();
+        this.setor = null;
     }
 
     public int getCodigo() {
@@ -46,10 +48,10 @@ public abstract class Animal implements Serializable  {
         return idade;
     }
 
-    public static void setContador(int contador) {
-        Animal.contador = contador;
+    public Setor getSetor() {
+        return setor;
     }
-
+    
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -72,6 +74,10 @@ public abstract class Animal implements Serializable  {
 
     public void setIdade(int idade) {
         this.idade = idade;
+    }
+
+    public void setSetor(Setor setor) {
+        this.setor = setor;
     }
     
     private int calculaIdade() {

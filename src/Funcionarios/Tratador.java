@@ -4,22 +4,16 @@ import Animais.*;
 import java.util.*;
 
 public class Tratador extends Funcionario {
-    private int setor;
     private double salario;
     private int id;
-    private List<Animal> animais_tratados;
+    private final List<Setor> setores;
     
-    public Tratador(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, int setor) {
-        super(cpf, nome, sexo, data_nascimento, data_admissao, "Tratador");
-        this.setor = setor;
+    public Tratador(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao) {
+        super(cpf, nome, sexo, data_nascimento, data_admissao);
         this.salario = calculo_salario();
         Funcionario.contador++;
         this.id = Funcionario.contador;
-        this.animais_tratados = new LinkedList<>();
-    }
-
-    public int getSetor() {
-        return setor;
+        this.setores = new LinkedList<>();
     }
 
     public double getSalario() {
@@ -30,12 +24,8 @@ public class Tratador extends Funcionario {
         return id;
     }
 
-    public List<Animal> getAnimais_tratados() {
-        return animais_tratados;
-    }
-
-    public void setSetor(int setor) {
-        this.setor = setor;
+    public List<Setor> getSetores() {
+        return setores;
     }
 
     public void setSalario(double salario) {
@@ -46,16 +36,15 @@ public class Tratador extends Funcionario {
         this.id = id;
     }
 
-    public void setAnimais_tratados(List<Animal> animais_tratados) {
-        this.animais_tratados = animais_tratados;
+    public void adicionar_setor(Setor setor) {
+        getSetores().add(setor);
     }
     
     @Override
     public String toString() {
         return
             "ID do funcionário: " + getId() + "\n" +
-            "Função: " + getFuncao() + "\n" +
-            "Setor: " + getSetor() + "\n" +
+            "Função: " + retorna_funcao() + "\n" +
             "Nome: " + getNome() + "\n" +
             "CPF: " + getCpf() + "\n" +
             "Sexo: " + getSexo() + "\n" +
@@ -75,9 +64,9 @@ public class Tratador extends Funcionario {
         return "Tratador";
     }
     
-    public void imprime_animais_tratados() {
-        for (int i = 0; i < getAnimais_tratados().size(); i++) {
-            System.out.println(getAnimais_tratados().get(i));
+    public void imprime_setores() {
+        for (int i = 0; i < getSetores().size(); i++) {
+            System.out.println(getSetores().get(i));
         }
     }
 }
