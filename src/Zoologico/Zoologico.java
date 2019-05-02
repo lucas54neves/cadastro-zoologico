@@ -420,6 +420,7 @@ public class Zoologico implements Serializable {
             }
         } while (id_setor != -1);
         
+        adicionar(cliente);
         System.out.println(cliente);
     }
     
@@ -557,7 +558,7 @@ public class Zoologico implements Serializable {
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
             List<Cliente> teste = (List<Cliente>) in.readObject();
             for ( Cliente a : teste ) {
-                getClientes().add(a);
+                adicionar(a);
             }
             in.close();
         } catch (ClassNotFoundException e) {
@@ -589,7 +590,7 @@ public class Zoologico implements Serializable {
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
             List<Animal> animais = (List<Animal>) in.readObject();
             for (Animal a : animais) {
-                getAnimais().add(a);
+                adicionar(a);
             }
             in.close();
         } catch (ClassNotFoundException e) {
@@ -621,7 +622,7 @@ public class Zoologico implements Serializable {
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
             List<Funcionario> funcionarios = (List<Funcionario>) in.readObject();
             for (Funcionario a : funcionarios) {
-                getFuncionarios().add(a);
+                adicionar(a);
             }
             in.close();
         } catch (ClassNotFoundException e) {
@@ -653,7 +654,7 @@ public class Zoologico implements Serializable {
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
             List<Setor> setores = (List<Setor>) in.readObject();
             for (Setor a : setores) {
-                getSetores().add(a);
+                adicionar(a);
             }
             in.close();
         } catch (ClassNotFoundException e) {
