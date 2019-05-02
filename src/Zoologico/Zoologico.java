@@ -98,85 +98,17 @@ public class Zoologico implements Serializable {
     }
     
     public void salvar() {
-        // Salva a lista com todos os animais em um aquivo
-        try {
-            File file = new File("animais.bin");
-            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
-            out.writeObject(getAnimais());
-            out.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Arq. nao existe. Causa: " + e.getMessage() );
-        } catch (IOException e) {
-            System.out.println("Erro de E/S. Causa: " + e.getMessage() );
-        }
-        
-        // Salva a lista com todos os funcionários em um aquivo
-        try {
-            File file = new File("funcionarios.bin");
-            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
-            out.writeObject(getFuncionarios());
-            out.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Arq. nao existe. Causa: " + e.getMessage() );
-        } catch (IOException e) {
-            System.out.println("Erro de E/S. Causa: " + e.getMessage() );
-        }
-        
-        // Salva a lista com todos os clientes em um aquivo
-        try {
-            File file = new File("clientes.bin");
-            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
-            out.writeObject(getClientes());
-            out.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Arq. nao existe. Causa: " + e.getMessage() );
-        } catch (IOException e) {
-            System.out.println("Erro de E/S. Causa: " + e.getMessage() );
-        }
+        salvar_animais();
+        salvar_clientes();
+        salvar_funcionarios();
+        salvar_setores();
     }
     
     public void ler() {
-        // Lê o arquivo dos animais e recupera os dados
-        try {
-            File file = new File("animais.bin");
-            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
-            setAnimais((List<Animal>) in.readObject());
-            in.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Arq. nao existe. Causa: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Erro de E/S. Causa: " + e.getMessage());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Zoologico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // Lê o arquivo dos funcionários e recupera os dados
-        try {
-            File file = new File("funcionarios.bin");
-            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
-            setFuncionarios((List<Funcionario>) in.readObject());
-            in.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Arq. nao existe. Causa: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Erro de E/S. Causa: " + e.getMessage());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Zoologico.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        // Lê o arquivo dos clientes e recupera os dados
-        try {
-            File file = new File("clientes.bin");
-            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
-            setClientes((List<Cliente>) in.readObject());
-            in.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Arq. nao existe. Causa: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Erro de E/S. Causa: " + e.getMessage());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Zoologico.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ler_animais();
+        ler_clientes();
+        ler_funcionarios();
+        ler_setores();
     }
     
     public void cadastrar_animal() {
@@ -487,6 +419,8 @@ public class Zoologico implements Serializable {
                 cliente.Visitar(id_setor);
             }
         } while (id_setor != -1);
+        
+        System.out.println(cliente);
     }
     
     public void abrir() {
@@ -577,6 +511,7 @@ public class Zoologico implements Serializable {
             System.out.println("[1] - Consultar um funcionário");
             System.out.println("[2] - Consultar um animal");
             System.out.println("[3] - Consultar um setor");
+            System.out.println("[4] - Consultar um cliente");
             opcao = ler.nextInt();
             System.out.println();
             
@@ -593,10 +528,164 @@ public class Zoologico implements Serializable {
                 case 3:
                     consultar_setor();
                     break;
+                case 4:
+                    consultar_cliente();
+                    break;
                 default:
                     System.out.println("Opção não cadastrada. Tente novamente");
             }
         }
+    }
+    
+    public void salvar_clientes() {
+        try {
+            File file = new File("dados/clientes.bin" );
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            
+            out.writeObject(getClientes());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public void ler_clientes() {
+        try {
+            File file = new File("dados/clientes.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            List<Cliente> teste = (List<Cliente>) in.readObject();
+            for ( Cliente a : teste ) {
+                getClientes().add(a);
+            }
+            in.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println( "Classe nao existe. Causa: " + e.getMessage() );
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public void salvar_animais() {
+        try {
+            File file = new File("dados/animais.bin" );
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            
+            out.writeObject(getAnimais());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public void ler_animais() {
+        try {
+            File file = new File("dados/animais.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            List<Animal> animais = (List<Animal>) in.readObject();
+            for (Animal a : animais) {
+                getAnimais().add(a);
+            }
+            in.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println( "Classe nao existe. Causa: " + e.getMessage() );
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public void salvar_funcionarios() {
+        try {
+            File file = new File("dados/funcionarios.bin" );
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            
+            out.writeObject(getFuncionarios());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public void ler_funcionarios() {
+        try {
+            File file = new File("dados/funcionarios.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            List<Funcionario> funcionarios = (List<Funcionario>) in.readObject();
+            for (Funcionario a : funcionarios) {
+                getFuncionarios().add(a);
+            }
+            in.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println( "Classe nao existe. Causa: " + e.getMessage() );
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public void salvar_setores() {
+        try {
+            File file = new File("dados/setores.bin" );
+            ObjectOutput out = new ObjectOutputStream(new FileOutputStream(file));
+            
+            out.writeObject(getSetores());
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public void ler_setores() {
+        try {
+            File file = new File("dados/setores.bin");
+            ObjectInput in = new ObjectInputStream(new FileInputStream(file));
+            List<Setor> setores = (List<Setor>) in.readObject();
+            for (Setor a : setores) {
+                getSetores().add(a);
+            }
+            in.close();
+        } catch (ClassNotFoundException e) {
+            System.out.println( "Classe nao existe. Causa: " + e.getMessage() );
+        } catch (FileNotFoundException e) {
+            System.out.println( "Arq. nao existe. Causa: " + e.getMessage() );
+        } catch (IOException e) {
+            System.out.println( "Erro de E/S. Causa: " + e.getMessage() );
+        }
+    }
+    
+    public Cliente retorna_cliente(int id) {
+        for (int i = 0; i < getClientes().size(); i++) {
+            if (getClientes().get(i).getId() == id) {
+                return getClientes().get(i);
+            }
+        }
+        
+        return null;
+    }
+    
+    public void consultar_cliente() {
+        Scanner ler = new Scanner(System.in);
+        int id;
+        Cliente cliente;
+        
+        System.out.println("Entre com o ID do cliente desejado");
+        id = ler.nextInt();
+        
+        cliente = retorna_cliente(id);
+        
+        System.out.println(cliente);
     }
     
     public static void main(String[] args) throws IOException {

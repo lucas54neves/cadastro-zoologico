@@ -25,4 +25,15 @@ public class Cliente implements Serializable {
     public void Visitar(int idSetor) {
         setores_visitados.add(idSetor);
     }
-}
+    
+    @Override
+    public String toString() {
+        String retorno =
+            "ID: " + getId() + "\n" + 
+            "Setores visitados: ";
+        for (int i = 0; i < getSetores_visitados().size(); i++) {
+            retorno += getSetores_visitados().get(i) + " ";
+        }
+        return retorno;
+    }
+} 
