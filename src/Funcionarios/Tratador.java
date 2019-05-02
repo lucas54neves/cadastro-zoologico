@@ -1,22 +1,25 @@
 package Funcionarios;
 
+import Animais.*;
 import java.util.*;
 
-public class Diretor extends Funcionario {
-    private String diretoria;
+public class Tratador extends Funcionario {
+    private int setor;
     private double salario;
     private int id;
+    private List<Animal> animais_tratados;
     
-    public Diretor(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String diretoria) {
-        super(cpf, nome, sexo, data_nascimento, data_admissao, "Diretor");
-        this.diretoria = diretoria;
+    public Tratador(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, int setor) {
+        super(cpf, nome, sexo, data_nascimento, data_admissao, "Tratador");
+        this.setor = setor;
         this.salario = calculo_salario();
         Funcionario.contador++;
         this.id = Funcionario.contador;
+        this.animais_tratados = new LinkedList<>();
     }
 
-    public String getDiretoria() {
-        return diretoria;
+    public int getSetor() {
+        return setor;
     }
 
     public double getSalario() {
@@ -27,8 +30,12 @@ public class Diretor extends Funcionario {
         return id;
     }
 
-    public void setDiretoria(String diretoria) {
-        this.diretoria = diretoria;
+    public List<Animal> getAnimais_tratados() {
+        return animais_tratados;
+    }
+
+    public void setSetor(int setor) {
+        this.setor = setor;
     }
 
     public void setSalario(double salario) {
@@ -38,13 +45,17 @@ public class Diretor extends Funcionario {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setAnimais_tratados(List<Animal> animais_tratados) {
+        this.animais_tratados = animais_tratados;
+    }
     
     @Override
     public String toString() {
         return
             "ID do funcionário: " + getId() + "\n" +
             "Função: " + getFuncao() + "\n" +
-            "Diretoria: " + getDiretoria() + "\n" +
+            "Setor: " + getSetor() + "\n" +
             "Nome: " + getNome() + "\n" +
             "CPF: " + getCpf() + "\n" +
             "Sexo: " + getSexo() + "\n" +
@@ -56,11 +67,17 @@ public class Diretor extends Funcionario {
 
     @Override
     public final double calculo_salario() {
-        return 20000;
+        return 10000;
     }
     
     @Override
     public String retorna_funcao() {
-        return "Diretor";
+        return "Tratador";
+    }
+    
+    public void imprime_animais_tratados() {
+        for (int i = 0; i < getAnimais_tratados().size(); i++) {
+            System.out.println(getAnimais_tratados().get(i));
+        }
     }
 }

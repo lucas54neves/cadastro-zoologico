@@ -100,4 +100,8 @@ public abstract class Funcionario  implements Serializable  {
         // Retorna a idade
         return i;
     }
+    
+    public abstract double calculo_salario();
+    
+    public abstract String retorna_funcao();
 }

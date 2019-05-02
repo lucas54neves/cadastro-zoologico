@@ -1,42 +1,47 @@
 package Funcionarios;
 
-import java.util.*;
+import java.util.Date;
 
-public class Diretor extends Funcionario {
-    private String diretoria;
-    private double salario;
+public class Veterinario extends Funcionario {
+    private String numero_crmv;
     private int id;
-    
-    public Diretor(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String diretoria) {
-        super(cpf, nome, sexo, data_nascimento, data_admissao, "Diretor");
-        this.diretoria = diretoria;
-        this.salario = calculo_salario();
+    private double salario;
+
+    public Veterinario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String funcao, String numero_crmv) {
+        super(cpf, nome, sexo, data_nascimento, data_admissao, funcao);
+        this.numero_crmv = numero_crmv;
         Funcionario.contador++;
         this.id = Funcionario.contador;
+        this.salario = calculo_salario();
     }
 
-    public String getDiretoria() {
-        return diretoria;
-    }
-
-    public double getSalario() {
-        return salario;
+    public String getNumero_crmv() {
+        return numero_crmv;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setDiretoria(String diretoria) {
-        this.diretoria = diretoria;
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setNumero_crmv(String numero_crmv) {
+        this.numero_crmv = numero_crmv;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setSalario(double salario) {
         this.salario = salario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public final double calculo_salario() {
+        return 15000;
     }
     
     @Override
@@ -44,7 +49,7 @@ public class Diretor extends Funcionario {
         return
             "ID do funcionário: " + getId() + "\n" +
             "Função: " + getFuncao() + "\n" +
-            "Diretoria: " + getDiretoria() + "\n" +
+            "CRMV: " + getNumero_crmv()+ "\n" +
             "Nome: " + getNome() + "\n" +
             "CPF: " + getCpf() + "\n" +
             "Sexo: " + getSexo() + "\n" +
@@ -53,14 +58,9 @@ public class Diretor extends Funcionario {
             "Salário: " + getSalario() + "\n" +
             "Idade: " + getIdade();
     }
-
-    @Override
-    public final double calculo_salario() {
-        return 20000;
-    }
     
     @Override
     public String retorna_funcao() {
-        return "Diretor";
+        return "Veterinário";
     }
 }
