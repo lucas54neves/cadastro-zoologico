@@ -5,8 +5,6 @@ import Clientes.*;
 import Funcionarios.*;
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Zoologico implements Serializable {
     // Lista com os animais do zoológico
@@ -556,8 +554,8 @@ public class Zoologico implements Serializable {
         try {
             File file = new File("dados/clientes.bin");
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
-            List<Cliente> teste = (List<Cliente>) in.readObject();
-            for ( Cliente a : teste ) {
+            List<Cliente> leitura = (List<Cliente>) in.readObject();
+            for ( Cliente a : leitura ) {
                 adicionar(a);
             }
             in.close();
@@ -588,8 +586,8 @@ public class Zoologico implements Serializable {
         try {
             File file = new File("dados/animais.bin");
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
-            List<Animal> animais = (List<Animal>) in.readObject();
-            for (Animal a : animais) {
+            List<Animal> leitura = (List<Animal>) in.readObject();
+            for (Animal a : leitura) {
                 adicionar(a);
             }
             in.close();
@@ -620,8 +618,8 @@ public class Zoologico implements Serializable {
         try {
             File file = new File("dados/funcionarios.bin");
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
-            List<Funcionario> funcionarios = (List<Funcionario>) in.readObject();
-            for (Funcionario a : funcionarios) {
+            List<Funcionario> leitura = (List<Funcionario>) in.readObject();
+            for (Funcionario a : leitura) {
                 adicionar(a);
             }
             in.close();
@@ -652,8 +650,8 @@ public class Zoologico implements Serializable {
         try {
             File file = new File("dados/setores.bin");
             ObjectInput in = new ObjectInputStream(new FileInputStream(file));
-            List<Setor> setores = (List<Setor>) in.readObject();
-            for (Setor a : setores) {
+            List<Setor> leitura = (List<Setor>) in.readObject();
+            for (Setor a : leitura) {
                 adicionar(a);
             }
             in.close();
