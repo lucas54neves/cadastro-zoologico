@@ -490,6 +490,9 @@ public class Zoologico implements Serializable {
                 case 4:
                     cadastrar_setor();
                     break;
+                case 5:
+                    cadastrar_animal_setor();
+                    break;
                 default:
                     System.out.println("Opção não cadastrada. Tente novamente");
             }
