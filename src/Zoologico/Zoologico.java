@@ -742,6 +742,98 @@ public class Zoologico implements Serializable {
         }
     }
     
+    public void remover_funcionario () {
+        Scanner ler = new Scanner(System.in);
+        String cpf;
+        Funcionario funcionario;
+        
+        System.out.println("Entre com o CPF");
+        cpf = ler.next();
+        
+        funcionario = retorna_funcionario(cpf);
+        
+        if (getFuncionarios().remove(funcionario)) {
+            System.out.println("Funcionário removido");
+        } else {
+            System.out.println("Funcionário não removido");
+        }
+    }
+    
+    public void remover_animal () {
+        Scanner ler = new Scanner(System.in);
+        Animal animal;
+        String nome, especie;
+        
+        System.out.println("Entre com o nome");
+        nome = ler.next();
+        
+        System.out.println("Entre com a especie");
+        especie = ler.next();
+        
+        animal = retorna_animal(nome, especie);
+        
+        if (getAnimais().remove(animal)) {
+            Setor setor = retorna_setor(especie);
+            setor.setQuantidade_visitas(setor.getQuantidade_visitas() - 1);
+            System.out.println("Animal removido");
+        } else {
+            System.out.println("Animal não removido");
+        } 
+    }
+    
+    public void remover_setor () {
+        Scanner ler = new Scanner(System.in);
+        Setor setor;
+        String especie;
+        
+        System.out.println("Entre com a espécie");
+        especie = ler.next();
+        
+        setor = retorna_setor(especie);
+        
+        if (getSetores().remove(setor)) {
+            System.out.println("Setor removido");
+        } else {
+            System.out.println("Setor não removido");
+        }
+    }
+    
+    public void menu_remocao() {
+        Scanner ler = new Scanner(System.in);
+        int opcao = -1;
+        
+        while (opcao != 0) {
+            System.out.println("========================");
+            System.out.println("=== Menu de remoção ===");
+            System.out.println("========================");
+            
+            System.out.println("Qual operação deseja realizar?");
+            System.out.println("[0] - Sair");
+            System.out.println("[1] - Remover um funcionário");
+            System.out.println("[2] - Remover um animal");
+            System.out.println("[3] - Remover um setor");
+            opcao = ler.nextInt();
+            System.out.println();
+            
+            switch (opcao) {
+                case 0:
+                    System.out.println("Menu de remoção finalizado");
+                    break;
+                case 1:
+                    remover_funcionario();
+                    break;
+                case 2:
+                    remover_animal();
+                    break;
+                case 3:
+                    remover_setor();
+                    break;
+                default:
+                    System.out.println("Opção não cadastrada. Tente novamente");
+            }
+        }
+    }
+    
     public static void main(String[] args) throws IOException {
         Zoologico zoo = new Zoologico();
         zoo.abrir();
