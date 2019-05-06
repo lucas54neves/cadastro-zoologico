@@ -492,7 +492,7 @@ public class Zoologico implements Serializable {
             
             switch (opcao) {
                 case 0:
-                    System.out.println("Menu principal finalizado");
+                    System.out.println("Menu de cadastro finalizado");
                     break;
                 case 1:
                     cadastrar_funcionario();
