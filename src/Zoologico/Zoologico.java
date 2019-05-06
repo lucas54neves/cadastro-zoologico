@@ -408,6 +408,15 @@ public class Zoologico implements Serializable {
         return null;
     }
     
+    public Setor retorna_setor(int id) {
+        for (int i = 0; i <  getSetores().size(); i++) {
+            if (getSetores().get(i).getId() == id) {
+                return getSetores().get(i);
+            }
+        }
+        return null;
+    }
+    
     public void cadastrar_cliente() {
         Scanner ler = new Scanner(System.in);
         Cliente cliente = new Cliente();
@@ -418,8 +427,10 @@ public class Zoologico implements Serializable {
             System.out.println("[-1] - Para sair");
             id_setor = ler.nextInt();
             
-            if (id_setor != -1) {
+            if (retorna_setor(id_setor) != null) {
                 cliente.Visitar(id_setor);
+            } else {
+                System.out.println("Setor não cadastrado");
             }
         } while (id_setor != -1);
         
@@ -519,6 +530,7 @@ public class Zoologico implements Serializable {
             System.out.println("[2] - Consultar um animal");
             System.out.println("[3] - Consultar um setor");
             System.out.println("[4] - Consultar um cliente");
+            System.out.println("[5] - Setores mais visitados");
             opcao = ler.nextInt();
             System.out.println();
             
@@ -537,6 +549,9 @@ public class Zoologico implements Serializable {
                     break;
                 case 4:
                     consultar_cliente();
+                    break;
+                case 5:
+                    mostra_setores_ordenados();
                     break;
                 default:
                     System.out.println("Opção não cadastrada. Tente novamente");
@@ -693,6 +708,38 @@ public class Zoologico implements Serializable {
         cliente = retorna_cliente(id);
         
         System.out.println(cliente);
+    }
+    
+    public void calcula_quantidade_visitas() {
+        int quantidade;
+        
+        for (int k = 0; k < getSetores().size(); k++) {
+            quantidade = 0;
+            
+            for (int i = 0; i < getClientes().size(); i++) {
+                for (int j = 0; j < getClientes().get(i).getSetores_visitados().size(); j++) {
+                    if ((int)getClientes().get(i).getSetores_visitados().get(j) == getSetores().get(k).getId()) {
+                        quantidade++;
+                    }
+                }
+            }
+            
+            getSetores().get(k).setQuantidade_visitas(quantidade);
+        }
+    }
+    
+    public void mostra_setores_ordenados() {
+        calcula_quantidade_visitas();
+        List<Setor> lista_para_ordenar = getSetores();
+        Collections.sort(lista_para_ordenar);
+        
+        System.out.println("=======================================");
+        System.out.println("=== Setores ordenados por visitação ===");
+        System.out.println("=======================================");
+        
+        for (int i = 0; i < lista_para_ordenar.size(); i++) {
+            System.out.println(lista_para_ordenar.get(i));
+        }
     }
     
     public static void main(String[] args) throws IOException {
