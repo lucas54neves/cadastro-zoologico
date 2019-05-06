@@ -372,26 +372,31 @@ public class Zoologico implements Serializable {
     }
     
     public void cadastrar_animal_setor() {
-        Scanner ler = new Scanner(System.in);
-        String especie, nome;
-        Animal animal;
-        Setor setor;
+        try {
+            Scanner ler = new Scanner(System.in);
+            String especie, nome;
+            Animal animal;
+            Setor setor;
+
+            System.out.println("========================================");
+            System.out.println("=== Cadastro de um animal a um setor ===");
+            System.out.println("========================================");
+
+            System.out.println("Entre com o nome do animal");
+            nome = ler.next();
+
+            System.out.println("Entre com o espécie do animal");
+            especie = ler.next();
+
+            animal = retorna_animal(nome, especie);
+            setor = retorna_setor(especie);
+
+            animal.setSetor(setor);
+            setor.adicionar(animal);
+        } catch (Exception e) {
+            System.out.println("Não foi possível adicionar o animal ao setor.");
+        }
         
-        System.out.println("========================================");
-        System.out.println("=== Cadastro de um animal a um setor ===");
-        System.out.println("========================================");
-        
-        System.out.println("Entre com o nome do animal");
-        nome = ler.next();
-        
-        System.out.println("Entre com o espécie do animal");
-        especie = ler.next();
-        
-        animal = retorna_animal(nome, especie);
-        setor = retorna_setor(especie);
-        animal.setSetor(setor);
-        
-        setor.adicionar(animal);
     }
     
     public Setor retorna_setor(String especie) {
