@@ -743,58 +743,82 @@ public class Zoologico implements Serializable {
     }
     
     public void remover_funcionario () {
-        Scanner ler = new Scanner(System.in);
-        String cpf;
-        Funcionario funcionario;
-        
-        System.out.println("Entre com o CPF");
-        cpf = ler.next();
-        
-        funcionario = retorna_funcionario(cpf);
-        
-        if (getFuncionarios().remove(funcionario)) {
-            System.out.println("Funcionário removido");
-        } else {
-            System.out.println("Funcionário não removido");
+        try {
+            Scanner ler = new Scanner(System.in);
+            String cpf;
+            Funcionario funcionario;
+
+            System.out.println("==============================");
+            System.out.println("=== Remoção de funcionário ===");
+            System.out.println("==============================");
+
+            System.out.println("Entre com o CPF");
+            cpf = ler.next();
+
+            funcionario = retorna_funcionario(cpf);
+
+            if (getFuncionarios().remove(funcionario)) {
+                System.out.println("Funcionário removido");
+            } else {
+                System.out.println("Funcionário não removido");
+            }
+        } catch (Exception e) {
+            System.out.println("Não foi possível remover o funcionário do sistema");
         }
     }
     
     public void remover_animal () {
-        Scanner ler = new Scanner(System.in);
-        Animal animal;
-        String nome, especie;
-        
-        System.out.println("Entre com o nome");
-        nome = ler.next();
-        
-        System.out.println("Entre com a especie");
-        especie = ler.next();
-        
-        animal = retorna_animal(nome, especie);
-        
-        if (getAnimais().remove(animal)) {
-            Setor setor = retorna_setor(especie);
-            setor.setQuantidade_visitas(setor.getQuantidade_visitas() - 1);
-            System.out.println("Animal removido");
-        } else {
-            System.out.println("Animal não removido");
-        } 
+        try {
+            Scanner ler = new Scanner(System.in);
+            Animal animal;
+            String nome, especie;
+
+            System.out.println("=========================");
+            System.out.println("=== Remoção de animal ===");
+            System.out.println("=========================");
+
+            System.out.println("Entre com o nome");
+            nome = ler.next();
+
+            System.out.println("Entre com a especie");
+            especie = ler.next();
+
+            animal = retorna_animal(nome, especie);
+
+            if (getAnimais().remove(animal)) {
+                Setor setor = retorna_setor(especie);
+                setor.setQuantidade_visitas(setor.getQuantidade_visitas() - 1);
+                System.out.println("Animal removido");
+            } else {
+                System.out.println("Animal não removido");
+            } 
+        } catch (Exception e) {
+            System.out.println("Não foi possível remover o animal do sistema");
+        }
     }
     
     public void remover_setor () {
-        Scanner ler = new Scanner(System.in);
-        Setor setor;
-        String especie;
-        
-        System.out.println("Entre com a espécie");
-        especie = ler.next();
-        
-        setor = retorna_setor(especie);
-        
-        if (getSetores().remove(setor)) {
-            System.out.println("Setor removido");
-        } else {
-            System.out.println("Setor não removido");
+        try {
+            Scanner ler = new Scanner(System.in);
+            Setor setor;
+            String especie;
+
+            System.out.println("========================");
+            System.out.println("=== Remoção de setor ===");
+            System.out.println("========================");
+
+            System.out.println("Entre com a espécie");
+            especie = ler.next();
+
+            setor = retorna_setor(especie);
+
+            if (getSetores().remove(setor)) {
+                System.out.println("Setor removido");
+            } else {
+                System.out.println("Setor não removido");
+            }
+        } catch (Exception e) {
+            System.out.println("Não foi possível remover o setor do sistema");
         }
     }
     
@@ -834,7 +858,7 @@ public class Zoologico implements Serializable {
         }
     }
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Zoologico zoo = new Zoologico();
         zoo.abrir();
     }
