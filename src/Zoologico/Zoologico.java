@@ -452,6 +452,7 @@ public class Zoologico implements Serializable {
             System.out.println("[0] - Sair");
             System.out.println("[1] - Adicionar algo ao sistema");
             System.out.println("[2] - Consultar algo do sistema");
+            System.out.println("[2] - Remover algo do sistema");
             opcao = ler.nextInt();
             System.out.println();
             
@@ -465,6 +466,12 @@ public class Zoologico implements Serializable {
                     break;
                 case 2:
                     menu_consulta();
+                    break;
+                case 3:
+                    menu_remocao();
+                    break;
+                default:
+                    System.out.println("Opção não cadastrada.");
                     break;
             }
         }
