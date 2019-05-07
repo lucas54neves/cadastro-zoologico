@@ -17,7 +17,6 @@ public class Zoologico implements Serializable {
     private List<Setor> setores;
     
     public Zoologico() {
-        // Deve carregar do arquivo se já existir dados salvos no arquivo
         this.animais = new LinkedList<>();
         this.funcionarios = new LinkedList<>();
         this.clientes = new LinkedList<>();
