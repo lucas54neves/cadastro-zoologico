@@ -452,7 +452,7 @@ public class Zoologico implements Serializable {
             System.out.println("[0] - Sair");
             System.out.println("[1] - Adicionar algo ao sistema");
             System.out.println("[2] - Consultar algo do sistema");
-            System.out.println("[2] - Remover algo do sistema");
+            System.out.println("[3] - Remover algo do sistema");
             opcao = ler.nextInt();
             System.out.println();
             
