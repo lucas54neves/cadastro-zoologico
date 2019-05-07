@@ -537,6 +537,10 @@ public class Zoologico implements Serializable {
             System.out.println("[3] - Consultar um setor");
             System.out.println("[4] - Consultar um cliente");
             System.out.println("[5] - Setores mais visitados");
+            System.out.println("[6] - Listar os funcionários");
+            System.out.println("[7] - Listar os animais");
+            System.out.println("[8] - Listar os setores");
+            System.out.println("[9] - Listar os clientes");
             opcao = ler.nextInt();
             System.out.println();
             
@@ -557,7 +561,19 @@ public class Zoologico implements Serializable {
                     consultar_cliente();
                     break;
                 case 5:
-                    mostra_setores_ordenados();
+                    mostrar_setores_ordenados();
+                    break;
+                case 6:
+                    mostrar_funcionarios();
+                    break;
+                case 7:
+                    mostrar_animais();
+                    break;
+                case 8:
+                    mostrar_setores();
+                    break;
+                case 9:
+                    mostrar_clientes();
                     break;
                 default:
                     System.out.println("Opção não cadastrada. Tente novamente");
@@ -734,7 +750,7 @@ public class Zoologico implements Serializable {
         }
     }
     
-    public void mostra_setores_ordenados() {
+    public void mostrar_setores_ordenados() {
         calcula_quantidade_visitas();
         List<Setor> lista_para_ordenar = getSetores();
         Collections.sort(lista_para_ordenar);
@@ -861,6 +877,30 @@ public class Zoologico implements Serializable {
                 default:
                     System.out.println("Opção não cadastrada. Tente novamente");
             }
+        }
+    }
+    
+    public void mostrar_funcionarios () {
+        for (int i = 0; i < getFuncionarios().size(); i++) {
+            System.out.println(getFuncionarios().get(i));
+        }
+    }
+    
+    public void mostrar_animais () {
+        for (int i = 0; i < getAnimais().size(); i++) {
+            System.out.println(getAnimais().get(i));
+        }
+    }
+    
+    public void mostrar_setores () {
+        for (int i = 0; i < getSetores().size(); i++) {
+            System.out.println(getSetores().get(i));
+        }
+    }
+    
+    public void mostrar_clientes () {
+        for (int i = 0; i < getClientes().size(); i++) {
+            System.out.println(getClientes().get(i));
         }
     }
     
