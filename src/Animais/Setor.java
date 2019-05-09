@@ -9,6 +9,7 @@ public class Setor implements Serializable, Comparable<Setor> {
     private static int contador = 0;
     private String especie;
     private int quantidade_visitas;
+    private int quantidade_animais;
 
     public Setor(String especie) {
         Setor.contador++;
@@ -16,6 +17,7 @@ public class Setor implements Serializable, Comparable<Setor> {
         this.animais = new LinkedList<>();
         this.especie = especie;
         this.quantidade_visitas = 0;
+        this.quantidade_animais = 0;
     }
 
     public List<Animal> getAnimais() {
@@ -42,15 +44,29 @@ public class Setor implements Serializable, Comparable<Setor> {
         this.quantidade_visitas = quantidade_visitas;
     }
     
-    public int retorna_quantidade_animais() {
-        return getAnimais().size();
+    public void adicionar_animal(Animal animal) {
+        getAnimais().add(animal);
+        setQuantidade_animais(getQuantidade_animais() + 1);
+    }
+    
+    public void remover_animal(Animal animal) {
+        getAnimais().remove(animal);
+        setQuantidade_animais(getQuantidade_animais() - 1);
+    }
+
+    public int getQuantidade_animais() {
+        return quantidade_animais;
+    }
+
+    public void setQuantidade_animais(int quantidade_animais) {
+        this.quantidade_animais = quantidade_animais;
     }
     
     @Override
     public String toString() {
         return
             "=== Setor " + getId() + " ===\n" +
-            "Quantidade de animais: " + retorna_quantidade_animais() + "\n" +
+            "Quantidade de animais: " + getQuantidade_animais()+ "\n" +
             "Espécie de animais: " + getEspecie() + "\n" +
             "Quantidade de visitas: " + getQuantidade_visitas();
     }
@@ -58,7 +74,7 @@ public class Setor implements Serializable, Comparable<Setor> {
     public void imprime_animais() {
         System.out.println("=== Setor " + getId() + " ===");
         
-        for (int i = 0; i < retorna_quantidade_animais(); i++) {
+        for (int i = 0; i < getQuantidade_animais(); i++) {
             System.out.println(getAnimais().get(i));
         }
     }

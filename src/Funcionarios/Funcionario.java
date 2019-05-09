@@ -19,7 +19,6 @@ public abstract class Funcionario  implements Serializable  {
         this.data_nascimento = data_nascimento;
         this.data_admissao = data_admissao;
         this.idade = this.calculaIdade();
-        Funcionario.contador++;
     }
     
     public String getCpf() {

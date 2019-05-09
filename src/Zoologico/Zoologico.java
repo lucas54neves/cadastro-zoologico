@@ -779,11 +779,7 @@ public class Zoologico implements Serializable {
 
             funcionario = retorna_funcionario(cpf);
 
-            if (getFuncionarios().remove(funcionario)) {
-                System.out.println("Funcionário removido");
-            } else {
-                System.out.println("Funcionário não removido");
-            }
+            getFuncionarios().remove(funcionario);
         } catch (Exception e) {
             System.out.println("Não foi possível remover o funcionário do sistema");
         }
@@ -806,14 +802,9 @@ public class Zoologico implements Serializable {
             especie = ler.next();
 
             animal = retorna_animal(nome, especie);
-
-            if (getAnimais().remove(animal)) {
-                Setor setor = retorna_setor(especie);
-                setor.setQuantidade_visitas(setor.getQuantidade_visitas() - 1);
-                System.out.println("Animal removido");
-            } else {
-                System.out.println("Animal não removido");
-            } 
+            
+            Setor setor = retorna_setor(especie);
+            setor.remover_animal(animal);
         } catch (Exception e) {
             System.out.println("Não foi possível remover o animal do sistema");
         }
@@ -834,11 +825,7 @@ public class Zoologico implements Serializable {
 
             setor = retorna_setor(especie);
 
-            if (getSetores().remove(setor)) {
-                System.out.println("Setor removido");
-            } else {
-                System.out.println("Setor não removido");
-            }
+            getSetores().remove(setor);
         } catch (Exception e) {
             System.out.println("Não foi possível remover o setor do sistema");
         }
