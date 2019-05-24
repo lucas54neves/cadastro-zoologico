@@ -20,7 +20,9 @@ public class Mamifero extends Animal {
     
     @Override
     public String toString() {
-        String retorno = "Código do animal: " + getCodigo() + "\n";
+        String retorno = "\n" +
+        "==================================" +
+        "Código do animal: " + getCodigo() + "\n";
         retorno += "Nome do animal: " + getNome() + "\n";
         retorno += "Espécie do animal: " + getEspecie() + "\n";
         retorno += "Sexo do animal: " + getSexo() + "\n";
@@ -28,7 +30,8 @@ public class Mamifero extends Animal {
             retorno += "Em gestação: " + isEm_gestacao() + "\n";
         }
         retorno += "Data de nascimento do animal: " + getData_nascimento() + "\n";
-        retorno += "Idade do animal: " + getIdade();
+        retorno += "Idade do animal: " + getIdade() + "\n" +
+        "==================================";
         
         return retorno;
     }

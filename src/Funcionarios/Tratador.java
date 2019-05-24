@@ -43,6 +43,8 @@ public class Tratador extends Funcionario {
     @Override
     public String toString() {
         return
+            "\n" +
+            "==================================" +
             "ID do funcionário: " + getId() + "\n" +
             "Função: " + retorna_funcao() + "\n" +
             "Nome: " + getNome() + "\n" +
@@ -51,7 +53,8 @@ public class Tratador extends Funcionario {
             "Data de nascimento: " + getData_nascimento() + "\n" +
             "Data de admissão: " + getData_admissao() + "\n" +
             "Salário: " + getSalario() + "\n" +
-            "Idade: " + getIdade();
+            "Idade: " + getIdade() + "\n" +
+            "==================================";
     }
 
     @Override

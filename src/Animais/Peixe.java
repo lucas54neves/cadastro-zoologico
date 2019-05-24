@@ -22,12 +22,15 @@ public class Peixe extends Animal {
     @Override
     public String toString() {
         return
+            "\n" +
+            "==================================" +
             "Código: " + getCodigo() + "\n" +
             "Nome: " + getNome() + "\n" +
             "Espécie: " + getEspecie() + "\n" +
             "Tipo de água: " + getTipo_agua() + "\n" +
             "Sexo: " + getSexo() + "\n" +
             "Data de nascimento: " + getData_nascimento() + "\n" +
-            "Idade: " + getIdade();
+            "Idade: " + getIdade() + "\n" +
+            "==================================";
     }
 }

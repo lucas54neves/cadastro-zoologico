@@ -21,12 +21,15 @@ public class Ave extends Animal {
     @Override
     public String toString() {
         return
+            "\n" +
+            "==================================" +
             "Código: " + getCodigo() + "\n" +
             "Nome: " + getNome() + "\n" +
             "Espécie: " + getEspecie() + "\n" +
             "Voa:" + isVoa() + "\n" +
             "Sexo: " + getSexo() + "\n" +
             "Data de nascimento: " + getData_nascimento() + "\n" +
-            "Idade: " + getIdade();
+            "Idade: " + getIdade() + "\n" +
+            "==================================";
     }
 }

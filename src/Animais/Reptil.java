@@ -22,12 +22,15 @@ public class Reptil extends Animal {
     @Override
     public String toString() {
         return
+            "\n" +
+            "==================================" +
             "Código: " + getCodigo() + "\n" +
             "Nome: " + getNome() + "\n" +
             "Espécie: " + getEspecie() + "\n" +
             "Tipo: " + getTipo_animal() + "\n" +
             "Sexo: " + getSexo() + "\n" +
             "Data de nascimento: " + getData_nascimento() + "\n" +
-            "Idadel: " + getIdade();
+            "Idadel: " + getIdade() + "\n" +
+            "==================================";
     }
 }

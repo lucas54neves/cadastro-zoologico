@@ -29,11 +29,16 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         String retorno =
-            "ID: " + getId() + "\n" + 
+            "\n" +
+            "==================================" +
+            "ID do cliente: " + getId() + "\n" + 
             "Setores visitados: ";
         for (int i = 0; i < getSetores_visitados().size(); i++) {
             retorno += getSetores_visitados().get(i) + " ";
         }
+        
+        retorno += "\n" +
+            "==================================";
         return retorno;
     }
 } 
