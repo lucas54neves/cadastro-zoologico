@@ -172,6 +172,10 @@ public class Zoologico implements Serializable {
                     System.out.println("[1] - Sim");
                     gestacao = ler.nextInt();
                     System.out.println();
+                    
+                    if (gestacao == 1 && sexo.equals("Macho")) {
+                        throw new IllegalArgumentException("Não é possível um animal macho estar em gestação.");
+                    }
 
                     novo_animal = new Mamifero(nome, especie, sexo, data_nascimento, gestacao == 1);
                     break;
