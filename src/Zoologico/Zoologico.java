@@ -85,11 +85,13 @@ public class Zoologico implements Serializable {
         }
     }
     
-    public Veterinario retorna_veterinario(String cpf) {
+    public Veterinario retorna_veterinario(String crmv) {
         try {
             for (int i = 0; i < getFuncionarios().size(); i++) {
-                if (getFuncionarios() instanceof Veterinario && cpf.equals(getFuncionarios().get(i).getCpf())) {
-                    return (Veterinario) getFuncionarios().get(i);
+                Object obj = getFuncionarios().get(i);
+                if (obj instanceof Veterinario) {
+                    if (((Veterinario) obj).getNumero_crmv().equals(crmv))
+                    return (Veterinario) obj;
                 }
             }
             throw new IllegalArgumentException("Funcionário não encontrado.");
@@ -301,7 +303,7 @@ public class Zoologico implements Serializable {
                     System.out.println("Entre com o CRMV");
                     crmv = ler.next();
                     
-                    if (retorna_veterinario(cpf) != null) {
+                    if (retorna_veterinario(crmv) != null) {
                         throw new IllegalArgumentException("Veterinário já cadastrado.");
                     }
                     
