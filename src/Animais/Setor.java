@@ -65,7 +65,8 @@ public class Setor implements Serializable, Comparable<Setor> {
     @Override
     public String toString() {
         return
-            "====== Setor " + getId() + " =====\n" +
+            "==================================\n" +
+            "Setor " + getId() + "\n" +
             "Quantidade de animais: " + getQuantidade_animais()+ "\n" +
             "Espécie de animais: " + getEspecie() + "\n" +
             "Quantidade de visitas: " + getQuantidade_visitas() + "\n" +
