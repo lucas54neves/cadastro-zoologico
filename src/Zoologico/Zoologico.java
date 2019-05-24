@@ -164,6 +164,10 @@ public class Zoologico implements Serializable {
             ano = ler.nextInt();
             data_nascimento = new Date(ano - 1900, mes - 1, dia);
             System.out.println();
+            
+            if (data_nascimento.after(new Date())) {
+                throw new IllegalArgumentException("Não é possível cadastrar um animal que ainda não nasceu.");
+            }
 
             switch (tipo) {
                 case 1:
