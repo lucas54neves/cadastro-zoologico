@@ -247,7 +247,7 @@ public class Zoologico implements Serializable {
             System.out.println("Entre com o sexo [Masculino/Feminino]");
             sexo = ler.next();
             
-            if (!"Masculino".equals(sexo) || !"Feminino".equals(sexo) ) {
+            if (!"Masculino".equals(sexo) && !"Feminino".equals(sexo) ) {
                 throw new IllegalArgumentException("Sexo incorreto.");
             }
 
