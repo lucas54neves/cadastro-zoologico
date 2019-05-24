@@ -382,21 +382,30 @@ public class Zoologico implements Serializable {
     }
     
     public void cadastrar_setor() {
-        Scanner ler = new Scanner(System.in);
-        String especie;
-        Setor setor;
+        try {
+            Scanner ler = new Scanner(System.in);
+            String especie;
+            Setor setor;
+
+            System.out.println("=========================");
+            System.out.println("=== Cadastro de setor ===");
+            System.out.println("=========================");
+
+            System.out.println("Entre com o espécie do animal");
+            especie = ler.next();
+
+            if (retorna_setor(especie) == null) {
+                setor = new Setor(especie);
+            } else {
+                throw new IllegalArgumentException("Já existe um setor com essa espécie.");
+            }
+
+            adicionar(setor);
+            System.out.println("Setor cadastrado");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
         
-        System.out.println("=========================");
-        System.out.println("=== Cadastro de setor ===");
-        System.out.println("=========================");
-        
-        System.out.println("Entre com o espécie do animal");
-        especie = ler.next();
-        
-        setor = new Setor(especie);
-        
-        adicionar(setor);
-        System.out.println("Setor cadastrado");
     }
     
     public void consultar_setor() {
