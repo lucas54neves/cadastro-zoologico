@@ -140,11 +140,11 @@ public class Zoologico implements Serializable {
             System.out.println("Entre com a espécie");
             especie = ler.next();
 
-            System.out.println("Entre com o sexo [Macho/Fêmea]");
+            System.out.println("Entre com o sexo [Macho/Femea]");
             sexo = ler.next();
 
             
-            if (!(sexo.equals("Macho") || sexo.equals("Fêmea"))) {
+            if (!(sexo.equals("Macho") || sexo.equals("Femea"))) {
                 throw new IllegalArgumentException("Sexo incorreto.");
             }
 
