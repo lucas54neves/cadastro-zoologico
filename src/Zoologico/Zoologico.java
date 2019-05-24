@@ -85,6 +85,20 @@ public class Zoologico implements Serializable {
         }
     }
     
+    public Veterinario retorna_veterinario(String cpf) {
+        try {
+            for (int i = 0; i < getFuncionarios().size(); i++) {
+                if (getFuncionarios() instanceof Veterinario && cpf.equals(getFuncionarios().get(i).getCpf())) {
+                    return (Veterinario) getFuncionarios().get(i);
+                }
+            }
+            throw new IllegalArgumentException("Funcionário não encontrado.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+    
     public Animal retorna_animal(String nome, String especie) {
         for (int i = 0; i < getAnimais().size(); i++) {
             if (getAnimais().get(i).getNome().equals(nome) && getAnimais().get(i).getEspecie().equals(especie)) {
@@ -109,163 +123,186 @@ public class Zoologico implements Serializable {
     }
     
     public void cadastrar_animal() {
-        Scanner ler = new Scanner(System.in);
-        String nome, especie, sexo, tipo_reptil, tipo_agua;
-        int tipo, dia, mes, ano, gestacao, voa;
-        Date data_nascimento;
-        Animal novo_animal = null;
-        
-        System.out.println("===========================");
-        System.out.println("=== Cadastro de animais ===");
-        System.out.println("===========================");
-        
-        System.out.println("Entre com o nome");
-        nome = ler.next();
-        
-        System.out.println("Entre com a espécie");
-        especie = ler.next();
-        
-        System.out.println("Entre com o sexo [Macho/Fêmea]");
-        sexo = ler.next();
-        
-        System.out.println("Entre com o tipo");
-        System.out.println("[1] - Mamífero");
-        System.out.println("[2] - Réptil");
-        System.out.println("[3] - Ave");
-        System.out.println("[4] - Anfíbio");
-        System.out.println("[5] - Peixe");
-        tipo = ler.nextInt();
-        
-        System.out.println("Entre com o dia de nascimento");
-        dia = ler.nextInt();
-        System.out.println("Entre com o mês de nascimento");
-        mes = ler.nextInt();
-        System.out.println("Entre com o ano de nascimento");
-        ano = ler.nextInt();
-        data_nascimento = new Date(ano - 1900, mes - 1, dia);
-        System.out.println();
-        
-        switch (tipo) {
-            case 1:
-                System.out.println("O animal encontra-se em gestação?");
-                System.out.println("[0] - Não");
-                System.out.println("[1] - Sim");
-                gestacao = ler.nextInt();
-                System.out.println();
+        try {
+            Scanner ler = new Scanner(System.in);
+            String nome, especie, sexo, tipo_reptil, tipo_agua;
+            int tipo, dia, mes, ano, gestacao, voa;
+            Date data_nascimento;
+            Animal novo_animal = null;
 
-                novo_animal = new Mamifero(nome, especie, sexo, data_nascimento, gestacao == 1);
-                break;
-            case 2:
-                System.out.println("Entre com o tipo de réptil.");
-                System.out.println("[Escamoso/Crocodiliano/Quelônio]");
-                tipo_reptil = ler.next();
-                System.out.println();
+            System.out.println("===========================");
+            System.out.println("=== Cadastro de animais ===");
+            System.out.println("===========================");
 
-                novo_animal = new Reptil(nome, especie, sexo, data_nascimento, tipo_reptil);
-                break;
-            case 3:
-                System.out.println("A ave pode voar?");
-                System.out.println("[0] - Não");
-                System.out.println("[1] - Sim");
-                voa = ler.nextInt();
-                System.out.println();
+            System.out.println("Entre com o nome");
+            nome = ler.next();
 
-                novo_animal = new Ave(nome, especie, sexo, data_nascimento, voa == 1);
-                break;
-            case 4:
-                novo_animal = new Anfibio(nome, especie, sexo, data_nascimento);
-                break;
-            case 5:
-                System.out.println("Qual o tipo de água desse paixe?");
-                System.out.println("[Salgada/Doce]");
-                tipo_agua = ler.next();
-                System.out.println();
+            System.out.println("Entre com a espécie");
+            especie = ler.next();
 
-                novo_animal = new Peixe(nome, especie, sexo, data_nascimento, tipo_agua);
-                break;
-        }
-        
-        if (novo_animal == null) {
+            System.out.println("Entre com o sexo [Macho/Fêmea]");
+            sexo = ler.next();
+
+            if (!"Macho".equals(sexo) || !"Fêmea".equals(sexo) ) {
+                throw new IllegalArgumentException("Sexo incorreto.");
+            }
+
+            System.out.println("Entre com o tipo");
+            System.out.println("[1] - Mamífero");
+            System.out.println("[2] - Réptil");
+            System.out.println("[3] - Ave");
+            System.out.println("[4] - Anfíbio");
+            System.out.println("[5] - Peixe");
+            tipo = ler.nextInt();
+
+            System.out.println("Entre com o dia de nascimento");
+            dia = ler.nextInt();
+            System.out.println("Entre com o mês de nascimento");
+            mes = ler.nextInt();
+            System.out.println("Entre com o ano de nascimento");
+            ano = ler.nextInt();
+            data_nascimento = new Date(ano - 1900, mes - 1, dia);
             System.out.println();
-            System.out.println("Não foi possível cadastrar o animal");
-            System.out.println();
-        } else {
-            adicionar(novo_animal);
-            System.out.println("Animal cadastrado");
-            System.out.println();
+
+            switch (tipo) {
+                case 1:
+                    System.out.println("O animal encontra-se em gestação?");
+                    System.out.println("[0] - Não");
+                    System.out.println("[1] - Sim");
+                    gestacao = ler.nextInt();
+                    System.out.println();
+
+                    novo_animal = new Mamifero(nome, especie, sexo, data_nascimento, gestacao == 1);
+                    break;
+                case 2:
+                    System.out.println("Entre com o tipo de réptil.");
+                    System.out.println("[Escamoso/Crocodiliano/Quelônio]");
+                    tipo_reptil = ler.next();
+                    System.out.println();
+
+                    novo_animal = new Reptil(nome, especie, sexo, data_nascimento, tipo_reptil);
+                    break;
+                case 3:
+                    System.out.println("A ave pode voar?");
+                    System.out.println("[0] - Não");
+                    System.out.println("[1] - Sim");
+                    voa = ler.nextInt();
+                    System.out.println();
+
+                    novo_animal = new Ave(nome, especie, sexo, data_nascimento, voa == 1);
+                    break;
+                case 4:
+                    novo_animal = new Anfibio(nome, especie, sexo, data_nascimento);
+                    break;
+                case 5:
+                    System.out.println("Qual o tipo de água desse paixe?");
+                    System.out.println("[Salgada/Doce]");
+                    tipo_agua = ler.next();
+                    System.out.println();
+
+                    novo_animal = new Peixe(nome, especie, sexo, data_nascimento, tipo_agua);
+                    break;
+            }
+
+            if (novo_animal == null) {
+                throw new IllegalArgumentException("Animal não cadastrado.");
+            } else {
+                adicionar(novo_animal);
+                System.out.println("Animal cadastrado");
+                System.out.println();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
     
     public void cadastrar_funcionario() {
-        Scanner ler = new Scanner(System.in);
-        String cpf, nome, sexo, crmv;
-        int dia, mes, ano, funcao;
-        Date nascimento, admissao;
-        Funcionario novo_funcionario = null;
-        
-        System.out.println("===============================");
-        System.out.println("=== Cadastro de funcionário ===");
-        System.out.println("===============================");
-        
-        System.out.println("Entre com a função do novo funcionário");
-        System.out.println("[1] - Diretor");
-        System.out.println("[2] - Tratador");
-        System.out.println("[3] - Veterinário");
-        funcao = ler.nextInt();
-        
-        System.out.println("Entre com o CPF");
-        cpf = ler.next();
-        
-        System.out.println("Entre com o nome");
-        nome = ler.next();
-        
-        System.out.println("Entre com o sexo [Masculino/Feminino]");
-        sexo = ler.next();
-        
-        System.out.println("Entre com o dia de nascimento");
-        dia = ler.nextInt();
-        
-        System.out.println("Entre com o mês de nascimento");
-        mes = ler.nextInt();
-        
-        System.out.println("Entre com o ano de nascimento");
-        ano = ler.nextInt();
-        
-        nascimento = new Date(ano - 1900, mes - 1, dia);
-        
-        System.out.println("Entre com o dia de admissão");
-        dia = ler.nextInt();
-        
-        System.out.println("Entre com o mês de admissão");
-        mes = ler.nextInt();
-        
-        System.out.println("Entre com o ano de admissão");
-        ano = ler.nextInt();
-        
-        admissao = new Date(ano - 1900, mes - 1, dia);
-        
-        switch (funcao) {
-            case 1:
-                novo_funcionario = new Diretor(cpf, nome, sexo, nascimento, admissao);
-                break;
-            case 2:
-                novo_funcionario = new Tratador(cpf, nome, sexo, nascimento, admissao);
-                break;
-            case 3:
-                System.out.println("Entre com o CRMV");
-                crmv = ler.next();
-                
-                novo_funcionario = new Veterinario(cpf, nome, sexo, nascimento, admissao, crmv);
-                break;
-            default:
-                System.out.println("Funcionário não cadastrado");
-                break;
+        try {
+            Scanner ler = new Scanner(System.in);
+            String cpf, nome, sexo, crmv;
+            int dia, mes, ano, funcao;
+            Date nascimento, admissao;
+            Funcionario novo_funcionario = null;
+
+            System.out.println("===============================");
+            System.out.println("=== Cadastro de funcionário ===");
+            System.out.println("===============================");
+
+            System.out.println("Entre com a função do novo funcionário");
+            System.out.println("[1] - Diretor");
+            System.out.println("[2] - Tratador");
+            System.out.println("[3] - Veterinário");
+            funcao = ler.nextInt();
+
+            System.out.println("Entre com o CPF");
+            cpf = ler.next();
+            
+            if (retorna_funcionario(cpf) != null) {
+                throw new IllegalArgumentException("Funcionário já cadastrado.");
+            }
+
+            System.out.println("Entre com o nome");
+            nome = ler.next();
+
+            System.out.println("Entre com o sexo [Masculino/Feminino]");
+            sexo = ler.next();
+            
+            if (!"Masculino".equals(sexo) || !"Feminino".equals(sexo) ) {
+                throw new IllegalArgumentException("Sexo incorreto.");
+            }
+
+            System.out.println("Entre com o dia de nascimento");
+            dia = ler.nextInt();
+
+            System.out.println("Entre com o mês de nascimento");
+            mes = ler.nextInt();
+
+            System.out.println("Entre com o ano de nascimento");
+            ano = ler.nextInt();
+
+            nascimento = new Date(ano - 1900, mes - 1, dia);
+
+            System.out.println("Entre com o dia de admissão");
+            dia = ler.nextInt();
+
+            System.out.println("Entre com o mês de admissão");
+            mes = ler.nextInt();
+
+            System.out.println("Entre com o ano de admissão");
+            ano = ler.nextInt();
+
+            admissao = new Date(ano - 1900, mes - 1, dia);
+
+            switch (funcao) {
+                case 1:
+                    novo_funcionario = new Diretor(cpf, nome, sexo, nascimento, admissao);
+                    break;
+                case 2:
+                    novo_funcionario = new Tratador(cpf, nome, sexo, nascimento, admissao);
+                    break;
+                case 3:
+                    System.out.println("Entre com o CRMV");
+                    crmv = ler.next();
+                    
+                    if (retorna_veterinario(cpf) != null) {
+                        throw new IllegalArgumentException("Veterinário já cadastrado.");
+                    }
+                    
+                    novo_funcionario = new Veterinario(cpf, nome, sexo, nascimento, admissao, crmv);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Funcionário não cadastrado.");
+            }
+
+            if (novo_funcionario != null) {
+                getFuncionarios().add(novo_funcionario);
+                System.out.println("Funcionário cadastrado");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
         
-        if (novo_funcionario != null) {
-            getFuncionarios().add(novo_funcionario);
-            System.out.println("Funcionário cadastrado");
-        }
+        
     }
     
     public void consultar_funcionario() {
