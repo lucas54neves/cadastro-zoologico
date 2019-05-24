@@ -274,6 +274,14 @@ public class Zoologico implements Serializable {
 
             admissao = new Date(ano - 1900, mes - 1, dia);
 
+            if (nascimento.after(admissao)) {
+                throw new IllegalArgumentException("Data de nascimento é depois da data de admissão.");
+            }
+            
+            if (admissao.after(new Date())) {
+                throw new IllegalArgumentException("Não é possível cadastrar um funcionário futuro.");
+            }
+            
             switch (funcao) {
                 case 1:
                     novo_funcionario = new Diretor(cpf, nome, sexo, nascimento, admissao);
