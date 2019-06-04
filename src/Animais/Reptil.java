@@ -1,13 +1,14 @@
 package Animais;
 
+import Zoologico.Zoologico;
 import java.util.Date;
 
 public class Reptil extends Animal {
     // O réptil pode ser classificado em escamoso, crocodiliano ou quelônio
     private String tipo_animal;
     
-    public Reptil(String nome, String especie, String sexo, Date data_nascimento, String tipo_animal) {
-        super(nome, especie, sexo, data_nascimento);
+    public Reptil(Zoologico zoo, String nome, String especie, String sexo, Date data_nascimento, String tipo_animal) {
+        super(zoo, nome, especie, sexo, data_nascimento);
         this.tipo_animal = tipo_animal;
     }
 

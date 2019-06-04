@@ -1,12 +1,13 @@
 package Animais;
 
+import Zoologico.Zoologico;
 import java.util.*;
 
 public class Mamifero extends Animal {
     private boolean em_gestacao;
     
-    public Mamifero(String nome, String especie, String sexo, Date data_nascimento, boolean em_gestacao) {
-        super(nome, especie, sexo, data_nascimento);
+    public Mamifero(Zoologico zoo, String nome, String especie, String sexo, Date data_nascimento, boolean em_gestacao) {
+        super(zoo, nome, especie, sexo, data_nascimento);
         this.em_gestacao = em_gestacao;
     }
 
@@ -21,7 +22,7 @@ public class Mamifero extends Animal {
     @Override
     public String toString() {
         String retorno = "\n" +
-        "==================================" +
+        "==================================\n" +
         "Código do animal: " + getCodigo() + "\n";
         retorno += "Nome do animal: " + getNome() + "\n";
         retorno += "Espécie do animal: " + getEspecie() + "\n";

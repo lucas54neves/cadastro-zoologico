@@ -1,12 +1,13 @@
 package Animais;
 
+import Zoologico.Zoologico;
 import java.util.*;
 
 public class Ave extends Animal {
     private boolean voa;
     
-    public Ave(String nome, String especie, String sexo, Date data_nascimento, boolean voa) {
-        super(nome, especie, sexo, data_nascimento);
+    public Ave(Zoologico zoo, String nome, String especie, String sexo, Date data_nascimento, boolean voa) {
+        super(zoo, nome, especie, sexo, data_nascimento);
         this.voa = voa;
     }
 

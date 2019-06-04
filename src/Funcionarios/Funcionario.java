@@ -10,7 +10,6 @@ public abstract class Funcionario  implements Serializable  {
     private Date data_admissao;
     private Date data_nascimento;
     private int idade;
-    public static int contador = 0;
 
     public Funcionario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao) {
         this.cpf = cpf;

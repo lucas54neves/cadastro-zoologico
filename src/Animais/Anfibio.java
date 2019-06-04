@@ -1,10 +1,11 @@
 package Animais;
 
+import Zoologico.Zoologico;
 import java.util.*;
 
 public class Anfibio extends Animal {
-    public Anfibio(String nome, String especie, String sexo, Date data_nascimento) {
-        super(nome, especie, sexo, data_nascimento);
+    public Anfibio(Zoologico zoo, String nome, String especie, String sexo, Date data_nascimento) {
+        super(zoo, nome, especie, sexo, data_nascimento);
     }
     
     @Override

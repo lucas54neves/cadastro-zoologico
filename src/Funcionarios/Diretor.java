@@ -1,16 +1,16 @@
 package Funcionarios;
 
+import Zoologico.Zoologico;
 import java.util.*;
 
 public class Diretor extends Funcionario {
     private double salario;
     private int id;
     
-    public Diretor(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao) {
+    public Diretor(Zoologico zoo, String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao) {
         super(cpf, nome, sexo, data_nascimento, data_admissao);
         this.salario = calculo_salario();
-        Funcionario.contador++;
-        this.id = Funcionario.contador;
+        this.id = zoo.getFuncionarios().size()+1;
     }
 
     public double getSalario() {
@@ -33,7 +33,7 @@ public class Diretor extends Funcionario {
     public String toString() {
         return
             "\n" +
-            "==================================" +
+            "==================================\n" +
             "ID do funcionário: " + getId() + "\n" +
             "Função: " + retorna_funcao() + "\n" +
             "Nome: " + getNome() + "\n" +

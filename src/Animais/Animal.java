@@ -1,10 +1,10 @@
 package Animais;
 
+import Zoologico.Zoologico;
 import java.io.*;
 import java.util.*;
 
 public abstract class Animal implements Serializable  {
-    private static int contador = 0;
     private int codigo;
     private String nome;
     private String especie;
@@ -13,9 +13,8 @@ public abstract class Animal implements Serializable  {
     private int idade;
     private Setor setor;
 
-    public Animal(String nome, String especie, String sexo, Date data_nascimento) {
-        Animal.contador++;
-        this.codigo = contador;
+    public Animal(Zoologico zoo, String nome, String especie, String sexo, Date data_nascimento) {
+        this.codigo = zoo.getAnimais().size()+1;
         this.nome = nome;
         this.especie = especie;
         this.sexo = sexo;

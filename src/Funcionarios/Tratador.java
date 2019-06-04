@@ -1,6 +1,7 @@
 package Funcionarios;
 
 import Animais.*;
+import Zoologico.Zoologico;
 import java.util.*;
 
 public class Tratador extends Funcionario {
@@ -8,11 +9,10 @@ public class Tratador extends Funcionario {
     private int id;
     private final List<Setor> setores;
     
-    public Tratador(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao) {
+    public Tratador(Zoologico zoo, String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao) {
         super(cpf, nome, sexo, data_nascimento, data_admissao);
         this.salario = calculo_salario();
-        Funcionario.contador++;
-        this.id = Funcionario.contador;
+        this.id = zoo.getFuncionarios().size()+1;
         this.setores = new LinkedList<>();
     }
 
@@ -44,7 +44,7 @@ public class Tratador extends Funcionario {
     public String toString() {
         return
             "\n" +
-            "==================================" +
+            "==================================\n" +
             "ID do funcionário: " + getId() + "\n" +
             "Função: " + retorna_funcao() + "\n" +
             "Nome: " + getNome() + "\n" +

@@ -1,13 +1,14 @@
 package Animais;
 
+import Zoologico.Zoologico;
 import java.util.Date;
 
 public class Peixe extends Animal {
     // O peixe pode ser classificado em peixe água doce ou salgada
     private String tipo_agua;
 
-    public Peixe(String nome, String especie, String sexo, Date data_nascimento, String tipo_agua) {
-        super(nome, especie, sexo, data_nascimento);
+    public Peixe(Zoologico zoo, String nome, String especie, String sexo, Date data_nascimento, String tipo_agua) {
+        super(zoo, nome, especie, sexo, data_nascimento);
         this.tipo_agua = tipo_agua;
     }
 

@@ -1,5 +1,6 @@
 package Funcionarios;
 
+import Zoologico.Zoologico;
 import java.util.Date;
 
 public class Veterinario extends Funcionario {
@@ -7,11 +8,10 @@ public class Veterinario extends Funcionario {
     private int id;
     private double salario;
 
-    public Veterinario(String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String numero_crmv) {
+    public Veterinario(Zoologico zoo, String cpf, String nome, String sexo, Date data_nascimento, Date data_admissao, String numero_crmv) {
         super(cpf, nome, sexo, data_nascimento, data_admissao);
         this.numero_crmv = numero_crmv;
-        Funcionario.contador++;
-        this.id = Funcionario.contador;
+        this.id = zoo.getFuncionarios().size()+1;
         this.salario = calculo_salario();
     }
 
@@ -48,7 +48,7 @@ public class Veterinario extends Funcionario {
     public String toString() {
         return
             "\n" +
-            "==================================" +
+            "==================================\n" +
             "ID do funcionário: " + getId() + "\n" +
             "Função: " + retorna_funcao() + "\n" +
             "CRMV: " + getNumero_crmv()+ "\n" +
