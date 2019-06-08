@@ -74,11 +74,12 @@ public class Setor implements Serializable, Comparable<Setor> {
     }
     
     public void imprime_animais() {
+        System.out.println("==================================");
         System.out.println("=== Setor " + getId() + " ===");
-        
         for (int i = 0; i < getQuantidade_animais(); i++) {
             System.out.println(getAnimais().get(i));
         }
+        System.out.println("==================================");
     }
     
     public void adicionar(Animal animal) {

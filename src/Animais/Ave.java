@@ -23,7 +23,7 @@ public class Ave extends Animal {
     public String toString() {
         return
             "\n" +
-            "==================================" +
+            "==================================\n" +
             "Código: " + getCodigo() + "\n" +
             "Nome: " + getNome() + "\n" +
             "Espécie: " + getEspecie() + "\n" +

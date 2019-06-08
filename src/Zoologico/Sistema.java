@@ -11,9 +11,9 @@ public class Sistema {
         int opcao = -1;
         
         while (opcao != 0) {
-            System.out.println("======================");
-            System.out.println("=== Menu principal ===");
-            System.out.println("======================");
+            System.out.println("==================================");
+            System.out.println("========= Menu principal =========");
+            System.out.println("==================================");
 
             System.out.println("Qual operação deseja realizar?");
             System.out.println("[1] - Adicionar algo ao sistema");
@@ -21,16 +21,15 @@ public class Sistema {
             System.out.println("[3] - Remover algo do sistema");
             System.out.println("[0] - Sair");
 
-            System.out.println("======================");
+            System.out.println("==================================");
 
             opcao = ler.nextInt();
-            System.out.println();
             
             switch (opcao) {
                 case 0:
-                    System.out.println("=================================");
-                    System.out.println("=== Menu principal finalizado ===");
-                    System.out.println("=================================");
+                    System.out.println("==================================");
+                    System.out.println("==== Menu principal finalizado ===");
+                    System.out.println("==================================");
                     zoo.salvar();
                     break;
                 case 1:
@@ -43,7 +42,9 @@ public class Sistema {
                     menu_remocao(zoo);
                     break;
                 default:
+                    System.out.println("==================================");
                     System.out.println("Opção não cadastrada.");
+                    System.out.println("==================================");
                     break;
             }
         }
@@ -54,9 +55,9 @@ public class Sistema {
         int opcao = -1;
         
         while (opcao != 0) {
-            System.out.println("========================");
-            System.out.println("=== Menu de consulta ===");
-            System.out.println("========================");
+            System.out.println("==================================");
+            System.out.println("======== Menu de consulta ========");
+            System.out.println("==================================");
             
             System.out.println("Qual operação deseja realizar?");
             System.out.println("[1] - Consultar um funcionário");
@@ -70,16 +71,15 @@ public class Sistema {
             System.out.println("[9] - Listar os clientes");
             System.out.println("[0] - Sair");
             
-            System.out.println("========================");
+            System.out.println("==================================");
             
             opcao = ler.nextInt();
-            System.out.println();
             
             switch (opcao) {
                 case 0:
-                    System.out.println("===================================");
-                    System.out.println("=== Menu de consulta finalizado ===");
-                    System.out.println("===================================");
+                    System.out.println("==================================");
+                    System.out.println("== Menu de consulta finalizado  ==");
+                    System.out.println("==================================");
                     break;
                 case 1:
                     consultar_funcionario(zoo);
@@ -109,7 +109,10 @@ public class Sistema {
                     listar_clientes(zoo);
                     break;
                 default:
-                    System.out.println("Opção não cadastrada. Tente novamente");
+                    System.out.println("==================================");
+                    System.out.println("Opção não cadastrada.");
+                    System.out.println("Tente novamente");
+                    System.out.println("==================================");
             }
         }
     }
@@ -119,9 +122,9 @@ public class Sistema {
         int opcao = -1;
         
         while (opcao != 0) {
-            System.out.println("========================");
-            System.out.println("=== Menu de cadastro ===");
-            System.out.println("========================");
+            System.out.println("==================================");
+            System.out.println("======== Menu de cadastro ========");
+            System.out.println("==================================");
             
             System.out.println("Qual operação deseja realizar?");
             System.out.println("[1] - Cadastrar um funcionário");
@@ -131,16 +134,15 @@ public class Sistema {
             System.out.println("[5] - Cadastrar animal a um setor");
             System.out.println("[0] - Sair");
             
-            System.out.println("========================");
+            System.out.println("==================================");
             
             opcao = ler.nextInt();
-            System.out.println();
             
             switch (opcao) {
                 case 0:
-                    System.out.println("===================================");
-                    System.out.println("=== Menu de cadastro finalizado ===");
-                    System.out.println("===================================");
+                    System.out.println("==================================");
+                    System.out.println("== Menu de cadastro finalizado  ==");
+                    System.out.println("==================================");
                     break;
                 case 1:
                     cadastrar_funcionario(zoo);
@@ -158,7 +160,10 @@ public class Sistema {
                     cadastrar_animal_setor(zoo);
                     break;
                 default:
-                    System.out.println("Opção não cadastrada. Tente novamente");
+                    System.out.println("==================================");
+                    System.out.println("Opção não cadastrada.");
+                    System.out.println("Tente novamente");
+                    System.out.println("==================================");
             }
         }
     }
@@ -168,9 +173,9 @@ public class Sistema {
         int opcao = -1;
         
         while (opcao != 0) {
-            System.out.println("========================");
-            System.out.println("=== Menu de remoção ====");
-            System.out.println("========================");
+            System.out.println("==================================");
+            System.out.println("======== Menu de remoção =========");
+            System.out.println("==================================");
             
             System.out.println("Qual operação deseja realizar?");
             System.out.println("[1] - Remover um funcionário");
@@ -178,10 +183,9 @@ public class Sistema {
             System.out.println("[3] - Remover um setor");
             System.out.println("[0] - Sair");
 
-            System.out.println("========================");
+            System.out.println("==================================");
             
             opcao = ler.nextInt();
-            System.out.println();
             
             switch (opcao) {
                 case 0:
@@ -199,7 +203,10 @@ public class Sistema {
                     remover_setor(zoo);
                     break;
                 default:
-                    System.out.println("Opção não cadastrada. Tente novamente");
+                    System.out.println("==================================");
+                    System.out.println("Opção não cadastrada.");
+                    System.out.println("Tente novamente");
+                    System.out.println("==================================");
             }
         }
     }
@@ -210,9 +217,9 @@ public class Sistema {
             String cpf;
             Funcionario funcionario;
 
-            System.out.println("==============================");
-            System.out.println("=== Remoção de funcionário ===");
-            System.out.println("==============================");
+            System.out.println("==================================");
+            System.out.println("===== Remoção de funcionário =====");
+            System.out.println("==================================");
 
             System.out.println("Entre com o CPF");
             cpf = ler.next();
@@ -222,12 +229,16 @@ public class Sistema {
             if (funcionario == null) {
                 throw new IllegalArgumentException("Não foi possível remover o funcionário do sistema");
             } else {
-            zoo.getFuncionarios().remove(funcionario);
+                zoo.getFuncionarios().remove(funcionario);
+                
+                System.out.println("==================================");
+                System.out.println("Funcionário removido");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("==============================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("==============================");
+            System.out.println("==================================");
         }
     }
     
@@ -237,9 +248,9 @@ public class Sistema {
             Animal animal;
             String nome, especie;
 
-            System.out.println("=========================");
-            System.out.println("=== Remoção de animal ===");
-            System.out.println("=========================");
+            System.out.println("==================================");
+            System.out.println("======= Remoção de animal ========");
+            System.out.println("==================================");
 
             System.out.println("Entre com o nome");
             nome = ler.next();
@@ -255,14 +266,14 @@ public class Sistema {
                 Setor setor = zoo.retorna_setor(especie);
                 setor.remover_animal(animal);
                 
-                System.out.println("=========================");
+                System.out.println("==================================");
                 System.out.println("Setor removido");
-                System.out.println("=========================");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("=========================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("=========================");
+            System.out.println("==================================");
         }
     }
     
@@ -272,9 +283,9 @@ public class Sistema {
             Setor setor;
             String especie;
 
-            System.out.println("========================");
-            System.out.println("=== Remoção de setor ===");
-            System.out.println("========================");
+            System.out.println("==================================");
+            System.out.println("======== Remoção de setor ========");
+            System.out.println("==================================");
 
             System.out.println("Entre com a espécie");
             especie = ler.next();
@@ -285,11 +296,15 @@ public class Sistema {
                 throw new IllegalArgumentException("Não foi possível remover o setor do sistema");
             } else {
                 zoo.getSetores().remove(setor);
+                
+                System.out.println("==================================");
+                System.out.println("Setor removido");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("========================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("========================");
+            System.out.println("==================================");
         }
     }
     
@@ -298,63 +313,64 @@ public class Sistema {
         List<Setor> lista_para_ordenar = zoo.getSetores();
         Collections.sort(lista_para_ordenar);
         
-        System.out.println("====================================================");
-        System.out.println("=== Listagem dos setores ordenados por visitação ===");
-        System.out.println("====================================================");
+        System.out.println("==================================");
+        System.out.println("====== Listagem dos setores ======");
+        System.out.println("===== Ordenados por visitação ====");
+        System.out.println("==================================");
         
         for (int i = 0; i < lista_para_ordenar.size(); i++) {
             System.out.println(lista_para_ordenar.get(i));
         }
         
-        System.out.println("====================================================");
+        System.out.println("==================================");
     }
     
     public void listar_funcionarios (Zoologico zoo) {
-        System.out.println("=================================");
-        System.out.println("=== Listagem dos funcionários ===");
-        System.out.println("=================================");
+        System.out.println("==================================");
+        System.out.println("=== Listagem dos funcionários  ===");
+        System.out.println("==================================");
         
         for (int i = 0; i < zoo.getFuncionarios().size(); i++) {
             System.out.println(zoo.getFuncionarios().get(i));
         }
 
-        System.out.println("=================================");
+        System.out.println("==================================");
     }
     
     public void listar_animais (Zoologico zoo) {
-        System.out.println("============================");
-        System.out.println("=== Listagem dos animais ===");
-        System.out.println("============================");
+        System.out.println("==================================");
+        System.out.println("====== Listagem dos animais ======");
+        System.out.println("==================================");
 
         for (int i = 0; i < zoo.getAnimais().size(); i++) {
             System.out.println(zoo.getAnimais().get(i));
         }
 
-        System.out.println("=================================");
+        System.out.println("==================================");
     }
     
     public void listar_setores (Zoologico zoo) {
-        System.out.println("============================");
-        System.out.println("=== Listagem dos setores ===");
-        System.out.println("============================");
+        System.out.println("==================================");
+        System.out.println("====== Listagem dos setores ======");
+        System.out.println("==================================");
         
         for (int i = 0; i < zoo.getSetores().size(); i++) {
             System.out.println(zoo.getSetores().get(i));
         }
 
-        System.out.println("=================================");
+        System.out.println("==================================");
     }
     
     public void listar_clientes (Zoologico zoo) {
-        System.out.println("============================");
-        System.out.println("=== Listagem dos animais ===");
-        System.out.println("============================");
+        System.out.println("==================================");
+        System.out.println("====== Listagem dos animais ======");
+        System.out.println("==================================");
         
         for (int i = 0; i < zoo.getClientes().size(); i++) {
             System.out.println(zoo.getClientes().get(i));
         }
 
-        System.out.println("=================================");
+        System.out.println("==================================");
     }
     
     public void consultar_cliente(Zoologico zoo) {
@@ -363,9 +379,9 @@ public class Sistema {
             int id;
             Cliente cliente;
 
-            System.out.println("===========================");
-            System.out.println("=== Consulta de cliente ===");
-            System.out.println("===========================");
+            System.out.println("==================================");
+            System.out.println("====== Consulta de cliente  ======");
+            System.out.println("==================================");
             
             System.out.println("Entre com o ID do cliente desejado");
             id = ler.nextInt();
@@ -373,16 +389,16 @@ public class Sistema {
             cliente = zoo.retorna_cliente(id);
 
             if (cliente != null) {
-                System.out.println("===========================");
+                System.out.println("==================================");
                 System.out.println(cliente);
-                System.out.println("===========================");
+                System.out.println("==================================");
             } else {
                 throw new IllegalArgumentException("Cliente não encontrado");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("===========================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("===========================");
+            System.out.println("==================================");
         }
         
     }
@@ -395,9 +411,9 @@ public class Sistema {
             int i = 0;
             boolean encontrado = false;
 
-            System.out.println("=========================");
-            System.out.println("=== Consulta de setor ===");
-            System.out.println("=========================");
+            System.out.println("==================================");
+            System.out.println("======= Consulta de setor ========");
+            System.out.println("==================================");
 
             System.out.println("Entre com o espécie do animal");
             especie = ler.next();
@@ -414,14 +430,14 @@ public class Sistema {
             if (!encontrado) {
                 throw new IllegalArgumentException("Setor não encontrado");
             } else {
-                System.out.println("=========================");
+                System.out.println("==================================");
                 System.out.println(setor);
-                System.out.println("=========================");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("=========================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("=========================");
+            System.out.println("==================================");
         }
     }
     
@@ -433,9 +449,9 @@ public class Sistema {
             boolean encontrado = false;
             int i = 0;
 
-            System.out.println("===============================");
-            System.out.println("=== Consulta de funcionário ===");
-            System.out.println("===============================");
+            System.out.println("==================================");
+            System.out.println("==== Consulta de funcionário  ====");
+            System.out.println("==================================");
 
             System.out.println("Entre com o CPF do funcionário");
             cpf = ler.next();
@@ -452,14 +468,14 @@ public class Sistema {
             if (!encontrado) {
                 throw new IllegalArgumentException("Funcionário não encontrado");
             } else {
-                System.out.println("===============================");
+                System.out.println("==================================");
                 System.out.println(funcionario);
-                System.out.println("===============================");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("===============================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("===============================");
+            System.out.println("==================================");
         }
     }
     
@@ -471,9 +487,9 @@ public class Sistema {
             boolean encontrado = false;
             int i = 0;
 
-            System.out.println("==========================");
-            System.out.println("=== Consulta de animal ===");
-            System.out.println("==========================");
+            System.out.println("==================================");
+            System.out.println("======= Consulta de animal =======");
+            System.out.println("==================================");
 
             System.out.println("Entre com o nome do animal");
             nome = ler.next();
@@ -493,14 +509,14 @@ public class Sistema {
             if (!encontrado) {
                 throw new IllegalArgumentException("Animal não encontrado.");
             } else {
-                System.out.println("==========================");
+                System.out.println("==================================");
                 System.out.println(animal);
-                System.out.println("==========================");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("==========================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("==========================");
+            System.out.println("==================================");
         }
     }
     
@@ -508,13 +524,13 @@ public class Sistema {
         try {
             Scanner ler = new Scanner(System.in);
             String nome, especie, sexo, tipo_reptil, tipo_agua;
-            int tipo, dia, mes, ano, gestacao, voa;
+            int tipo, dia, mes, ano, gestacao, voa, venenoso, aquatico;
             Date data_nascimento;
             Animal novo_animal = null;
 
-            System.out.println("===========================");
-            System.out.println("=== Cadastro de animais ===");
-            System.out.println("===========================");
+            System.out.println("==================================");
+            System.out.println("====== Cadastro de animais  ======");
+            System.out.println("==================================");
 
             System.out.println("Entre com o nome");
             nome = ler.next();
@@ -558,7 +574,6 @@ public class Sistema {
                         System.out.println("[0] - Não");
                         System.out.println("[1] - Sim");
                         gestacao = ler.nextInt();
-                        System.out.println();
                     } else {
                         gestacao = 0;
                     }
@@ -569,27 +584,34 @@ public class Sistema {
                     System.out.println("Entre com o tipo de réptil.");
                     System.out.println("[Escamoso/Crocodiliano/Quelônio]");
                     tipo_reptil = ler.next();
-                    System.out.println();
+                    
+                    System.out.println("O réptil é aquático?");
+                    System.out.println("[0] - Não");
+                    System.out.println("[1] - Sim");
+                    aquatico = ler.nextInt();
 
-                    novo_animal = new Reptil(zoo, nome, especie, sexo, data_nascimento, tipo_reptil);
+                    novo_animal = new Reptil(zoo, nome, especie, sexo, data_nascimento, tipo_reptil, aquatico == 1);
                     break;
                 case 3:
                     System.out.println("A ave pode voar?");
                     System.out.println("[0] - Não");
                     System.out.println("[1] - Sim");
                     voa = ler.nextInt();
-                    System.out.println();
 
                     novo_animal = new Ave(zoo, nome, especie, sexo, data_nascimento, voa == 1);
                     break;
                 case 4:
-                    novo_animal = new Anfibio(zoo, nome, especie, sexo, data_nascimento);
+                    System.out.println("O anfíbio é venenoso?");
+                    System.out.println("[0] - Não");
+                    System.out.println("[1] - Sim");
+                    venenoso = ler.nextInt();
+                    
+                    novo_animal = new Anfibio(zoo, nome, especie, sexo, data_nascimento, venenoso == 1);
                     break;
                 case 5:
                     System.out.println("Qual o tipo de água desse paixe?");
                     System.out.println("[Salgada/Doce]");
                     tipo_agua = ler.next();
-                    System.out.println();
 
                     novo_animal = new Peixe(zoo, nome, especie, sexo, data_nascimento, tipo_agua);
                     break;
@@ -599,14 +621,14 @@ public class Sistema {
                 throw new IllegalArgumentException("Animal não cadastrado.");
             } else {
                 zoo.adicionar(novo_animal);
-                System.out.println("=========================");
-                System.out.println("=== Animal cadastrado ===");
-                System.out.println("=========================");
+                System.out.println("==================================");
+                System.out.println("======= Animal cadastrado ========");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("=========================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("=========================");
+            System.out.println("==================================");
         }
     }
     
@@ -616,12 +638,15 @@ public class Sistema {
         Setor setor;
         int id_setor = -2;
 
-        System.out.println("===========================");
-        System.out.println("=== Cadastro de cliente ===");
-        System.out.println("===========================");
+        System.out.println("==================================");
+        System.out.println("====== Cadastro de cliente =======");
+        System.out.println("==================================");
+        
+        
+        listar_setores(zoo);
         
         while (id_setor != -1) {
-            System.out.println("Entre com o setor visitado");
+            System.out.println("Entre com o ID do setor visitado");
             System.out.println("[-1] - Para sair");
             id_setor = ler.nextInt();
             setor = zoo.retorna_setor(id_setor);
@@ -637,7 +662,7 @@ public class Sistema {
         zoo.adicionar(cliente);
         System.out.println(cliente);
         
-        System.out.println("===========================");
+        System.out.println("==================================");
     }
     
     public void cadastrar_funcionario(Zoologico zoo) {
@@ -648,9 +673,9 @@ public class Sistema {
             Date nascimento, admissao;
             Funcionario novo_funcionario = null;
 
-            System.out.println("===============================");
-            System.out.println("=== Cadastro de funcionário ===");
-            System.out.println("===============================");
+            System.out.println("==================================");
+            System.out.println("==== Cadastro de funcionário  ====");
+            System.out.println("==================================");
 
             System.out.println("Entre com a função do novo funcionário");
             System.out.println("[1] - Diretor");
@@ -729,14 +754,14 @@ public class Sistema {
             if (novo_funcionario != null) {
                 zoo.getFuncionarios().add(novo_funcionario);
 
-                System.out.println("===============================");
+                System.out.println("==================================");
                 System.out.println("Funcionário cadastrado");
-                System.out.println("===============================");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("===============================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("===============================");
+            System.out.println("==================================");
         }
     }
     
@@ -746,9 +771,9 @@ public class Sistema {
             String especie;
             Setor setor;
 
-            System.out.println("=========================");
-            System.out.println("=== Cadastro de setor ===");
-            System.out.println("=========================");
+            System.out.println("==================================");
+            System.out.println("======= Cadastro de setor  =======");
+            System.out.println("==================================");
 
             System.out.println("Entre com o espécie do animal");
             especie = ler.next();
@@ -757,16 +782,16 @@ public class Sistema {
                 setor = new Setor(especie);
                 zoo.adicionar(setor);
                 
-                System.out.println("=========================");
+                System.out.println("==================================");
                 System.out.println("Setor cadastrado");
-                System.out.println("=========================");
+                System.out.println("==================================");
             } else {
                 throw new IllegalArgumentException("Já existe um setor com essa espécie.");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("=========================");
+            System.out.println("==================================");
             System.out.println(e.getMessage());
-            System.out.println("=========================");
+            System.out.println("==================================");
         }
         
     }
@@ -778,9 +803,10 @@ public class Sistema {
             Animal animal;
             Setor setor;
 
-            System.out.println("========================================");
-            System.out.println("=== Cadastro de um animal a um setor ===");
-            System.out.println("========================================");
+            System.out.println("==================================");
+            System.out.println("===== Cadastro de um animal  =====");
+            System.out.println("========== Em um setor ===========");
+            System.out.println("==================================");
 
             System.out.println("Entre com o nome do animal");
             nome = ler.next();
@@ -797,14 +823,14 @@ public class Sistema {
                 animal.setSetor(setor);
                 setor.adicionar(animal);
                 
-                System.out.println("====================================");
-                System.out.println("=== Animal cadastrado a um setor ===");
-                System.out.println("====================================");
+                System.out.println("==================================");
+                System.out.println("======= Animal cadastrado  =======");
+                System.out.println("==================================");
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("====================================");
+            System.out.println("==================================");
             System.out.println();
-            System.out.println("====================================");
+            System.out.println("==================================");
         }
     }
 
