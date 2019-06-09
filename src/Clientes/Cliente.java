@@ -30,7 +30,7 @@ public class Cliente implements Serializable {
     public String toString() {
         String retorno =
             "\n" +
-            "==================================" +
+            "==================================\n" +
             "ID do cliente: " + getId() + "\n" + 
             "Setores visitados: ";
         for (int i = 0; i < getSetores_visitados().size(); i++) {

@@ -29,7 +29,7 @@ public class Anfibio extends Animal {
             "Espécie: " + getEspecie() + "\n" +
             "Sexo: " + getSexo() + "\n" +
             "Data de nascimento: " + getData_nascimento() + "\n" +
-            "Idade: " + getIdade() + "\n" +
+            "Idade do animal: " + getIdade() + "\n" +
             "Venenoso: " +  isVenenoso() + "\n" +
             "==================================";
     }

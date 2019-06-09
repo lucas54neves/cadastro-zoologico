@@ -42,7 +42,7 @@ public class Reptil extends Animal {
             "Aquático: " + isAquatico() + "\n" +
             "Sexo: " + getSexo() + "\n" +
             "Data de nascimento: " + getData_nascimento() + "\n" +
-            "Idadel: " + getIdade() + "\n" +
+            "Idade do animal: " + getIdade() + "\n" +
             "==================================";
     }
 }

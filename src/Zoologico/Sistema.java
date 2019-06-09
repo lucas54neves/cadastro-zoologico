@@ -655,13 +655,16 @@ public class Sistema {
                 cliente.Visitar(id_setor);
                 setor.setQuantidade_animais(setor.getQuantidade_visitas()+1);
             } else {
-                System.out.println("Setor não cadastrado");
+                if (id_setor != -1) {
+                    System.out.println("Setor não cadastrado");
+                }
             }
         }
 
         zoo.adicionar(cliente);
-        System.out.println(cliente);
         
+        System.out.println("==================================");
+        System.out.println("Cliente registrado com " + cliente.getSetores_visitados().size() + " visita(s)");
         System.out.println("==================================");
     }
     

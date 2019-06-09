@@ -30,7 +30,7 @@ public class Ave extends Animal {
             "Voa:" + isVoa() + "\n" +
             "Sexo: " + getSexo() + "\n" +
             "Data de nascimento: " + getData_nascimento() + "\n" +
-            "Idade: " + getIdade() + "\n" +
+            "Idade do animal: " + getIdade() + "\n" +
             "==================================";
     }
 }

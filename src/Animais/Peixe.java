@@ -31,7 +31,7 @@ public class Peixe extends Animal {
             "Tipo de água: " + getTipo_agua() + "\n" +
             "Sexo: " + getSexo() + "\n" +
             "Data de nascimento: " + getData_nascimento() + "\n" +
-            "Idade: " + getIdade() + "\n" +
+            "Idade do animal: " + getIdade() + "\n" +
             "==================================";
     }
 }
